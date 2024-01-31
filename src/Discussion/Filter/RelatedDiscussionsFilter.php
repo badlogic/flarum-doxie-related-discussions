@@ -89,64 +89,34 @@ class RelatedDiscussionsFilter implements FilterInterface
 
     private function getResults(Discussion $discussion)
     {
-        /** @var \Illuminate\Database\Query\Builder */
-        $query = Discussion::query()
-            ->whereKeyNot($discussion->id)
-            ->whereNull('hidden_at');
+        $postsText = $discussion->title . "\n" . $discussion->posts()->whereNull('hidden_at')->get()->pluck('content')->implode(' ');
+        $discussionId = $discussion->id;
 
-        if ($this->extensions->isEnabled('flarum-approval')) {
-            $query = $query->where('is_approved', '=', 1);
+        $client = new \GuzzleHttp\Client();
+
+        try {
+            $response = $client->get('https://doxie.marioslab.io/api/documents/65a4a88f26fcb786b2860223/65b7a917891eb446da44956c/query', [
+                'query' => ["k" => 50, 'query' => $postsText],
+            ]);
+
+            $body = json_decode($response->getBody()->getContents(), true);
+
+            $docUris = collect($body['data'] ?? [])
+                        ->pluck('docUri')
+                        ->unique()
+                        ->map(function ($uri) use ($discussionId) {
+                            preg_match('/forum\/d\/(\d+)/', $uri, $matches);
+                            if ($matches[1] == $discussionId) return null;
+                            return $matches[1] ?? null;
+                        })
+                        ->filter()
+                        ->take(5)
+                        ->values();
+        } catch (\Exception $e) {
+            $docUris = collect([]);
         }
 
-        if ($this->extensions->isEnabled('flarum-tags')) {
-            /** @var int */
-            $tagId = $discussion->tags->map(function ($i) {
-                return $i->id;
-            })->first();
-
-            $query = $query->with('tags')->whereHas('tags', function ($query) use ($tagId) {
-                $query->where('tag_id', '=', $tagId);
-            });
-        }
-
-        $maxDiscussions = (int) $this->settings->get('badlogic-related-discussions.max-discussions');
-
-        if ($maxDiscussions <= 0) {
-            $maxDiscussions = 5;
-        }
-
-        $generator = (string) $this->settings->get('badlogic-related-discussions.generator');
-
-        if ($generator == 'title') {
-            $results = collect([], $maxDiscussions);
-
-            $query->select('id', 'title')->chunk(200, function ($collection) use ($results, $discussion, $maxDiscussions) {
-                $mainDiscussionTitle = strtolower($discussion->title);
-
-                foreach ($collection as $i) {
-                    if ($results->count() == $maxDiscussions) {
-                        return false;
-                    }
-
-                    $perc = 0;
-                    similar_text($mainDiscussionTitle, strtolower($i->title), $perc);
-
-                    if ($perc > 60) {
-                        $results->push($i->id);
-                    }
-                }
-            });
-        }
-
-        if ($generator == 'random') {
-            $results = $query->inRandomOrder()
-                ->limit($maxDiscussions)
-                ->get('id')
-                ->map(function (Discussion $discussion) {
-                    return $discussion->id;
-                });
-        }
-
-        return $results;
+        return $docUris;
     }
+
 }

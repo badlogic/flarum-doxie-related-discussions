@@ -4,7 +4,7 @@ namespace Badlogic\RelatedDiscussions\Listener;
 
 use Flarum\Settings\Event\Saving;
 use Illuminate\Support\Arr;
-use Nearata\RelatedDiscussions\Validator\SettingsSavingValidator;
+use Badlogic\RelatedDiscussions\Validator\SettingsSavingValidator;
 
 class SettingsSavingListener
 {

@@ -1,5 +1,5 @@
 {
-    "name": "@nearata/flarum-ext-related-discussions",
+    "name": "@Badlogic/flarum-ext-related-discussions",
     "private": true,
     "version": "0.0.0",
     "devDependencies": {

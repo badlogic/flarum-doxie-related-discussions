@@ -16,7 +16,7 @@ export default class RelatedDiscussionState {
     app.store
       .find("discussions", {
         "filter[badlogicRelatedDiscussions]": this.discussionId,
-      })
+      } as any)
       .then((r: any) => {
         this.data.push(...r);
       })

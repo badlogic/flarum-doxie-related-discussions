@@ -111,7 +111,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-alert("Hello world");
 flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().initializers.add("badlogic-related-discussions", function () {
   (0,flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__.extend)((flarum_forum_components_PostStream__WEBPACK_IMPORTED_MODULE_4___default().prototype), "view", function (element) {
     var allowGuests = flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute("badlogicRelatedDiscussionsAllowGuests");
@@ -123,7 +122,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().initializers.add("badlog
     var key = "badlogicRelatedDiscussions";
     if (position === "first_post") {
       var _element$children;
-      (_element$children = element.children) == null ? void 0 : _element$children.splice(1, 0, m(_components_RelatedDiscussionList__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      (_element$children = element.children) == null ? void 0 : _element$children.splice(0, 0, m(_components_RelatedDiscussionList__WEBPACK_IMPORTED_MODULE_0__["default"], {
         key: key,
         discussionId: discussionId,
         position: 1

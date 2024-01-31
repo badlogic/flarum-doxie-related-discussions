@@ -4,8 +4,6 @@ import app from "flarum/forum/app";
 import DiscussionPage from "flarum/forum/components/DiscussionPage";
 import PostStream from "flarum/forum/components/PostStream";
 
-alert("Hello world");
-
 app.initializers.add("badlogic-related-discussions", () => {
   extend(PostStream.prototype, "view", function (element) {
     const allowGuests = app.forum.attribute(
@@ -24,7 +22,7 @@ app.initializers.add("badlogic-related-discussions", () => {
 
     if (position === "first_post") {
       element.children?.splice(
-        1,
+        0,
         0,
         <RelatedDiscussionList
           key={key}
