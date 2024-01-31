@@ -1,12 +1,30 @@
+.badlogicRelated {
+  display: flex;
+  gap: 1em;
+  border-bottom: 1px solid #d3d3d3;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  justify-content: center;
+  background: #f7f7f7;
+
+  h3 {
+    margin: 0;
+  }
+}
+
 .badlogicRelatedDiscussions {
-  &.position1,
-  &.position2 {
-    border: 1px solid #ccc;
-    border-radius: 1em;
-    padding: 1em 1.5em;
+  .TagsLabel {
+    display: flex;
+    align-items: center;
+    place-self: start;
   }
 
-  .DiscussionList-title {
-    margin: 0;
+  .DiscussionListItem-count {
+    margin-right: 0;
+    place-self: start;
+  }
+
+  h3 {
+    margin-bottom: 0.25em;
   }
 }

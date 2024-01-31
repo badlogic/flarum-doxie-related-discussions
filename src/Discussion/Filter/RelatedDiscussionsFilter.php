@@ -12,8 +12,6 @@ use Illuminate\Contracts\Cache\Repository;
 
 class RelatedDiscussionsFilter implements FilterInterface
 {
-    protected $pattern = '/^(?<days>([0-9]|[1-2][0-9]|[3][0-1]))d(?<hours>([0-9]|[1][0-9]|[2][0-3]))h(?<minutes>([0-9]|[1-5][0-9]))m$/';
-
     /**
      * @var SettingsRepositoryInterface
      */
@@ -60,12 +58,6 @@ class RelatedDiscussionsFilter implements FilterInterface
             return;
         }
 
-        $allowGuests = $this->settings->get('badlogic-related-discussions.allow-guests');
-
-        if (! $allowGuests && $filterState->getActor()->isGuest()) {
-            return;
-        }
-
         $cache = (string) $this->settings->get('badlogic-related-discussions.cache');
 
         preg_match($this->pattern, $cache, $matches);
@@ -89,14 +81,24 @@ class RelatedDiscussionsFilter implements FilterInterface
 
     private function getResults(Discussion $discussion)
     {
-        $postsText = $discussion->title . "\n" . $discussion->posts()->whereNull('hidden_at')->get()->pluck('content')->implode(' ');
+        $posts = $discussion->posts()->whereNull('hidden_at')->get();
+        $postsText = $discussion->title . "\n";
+
+        foreach ($posts as $post) {
+            $postsText .= "\n" . $post->content . "\n";
+            if (strlen($postsText) > 7000) {
+                break;
+            }
+        }
         $discussionId = $discussion->id;
 
         $client = new \GuzzleHttp\Client();
 
         try {
-            $response = $client->get('https://doxie.marioslab.io/api/documents/65a4a88f26fcb786b2860223/65b7a917891eb446da44956c/query', [
-                'query' => ["k" => 50, 'query' => $postsText],
+            $forumQueryUrl = (string) $this->settings->get('badlogic-related-discussions.forum-query-url');
+            $maxDicussions = (int) $this->settings->get('badlogic-related-discussions.max-discussions');
+            $response = $client->post($forumQueryUrl, [
+                'json' => ['k' => 50, 'query' => $postsText]
             ]);
 
             $body = json_decode($response->getBody()->getContents(), true);
@@ -110,7 +112,7 @@ class RelatedDiscussionsFilter implements FilterInterface
                             return $matches[1] ?? null;
                         })
                         ->filter()
-                        ->take(5)
+                        ->take($maxDicussions)
                         ->values();
         } catch (\Exception $e) {
             $docUris = collect([]);
@@ -118,5 +120,4 @@ class RelatedDiscussionsFilter implements FilterInterface
 
         return $docUris;
     }
-
 }

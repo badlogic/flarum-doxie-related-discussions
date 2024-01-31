@@ -1,20 +1,16 @@
 badlogic-related-discussions:
   admin:
     settings:
-      allow_guests: Allow Guests
-      generator: Generator
-      generator_options:
-        random: Random
-        title: By Title
       max_discussions: Max Discussions
       max_discussions_help: Default is <strong>5</strong>.
-      position: Position
-      position_options:
-        first_post: After First Post
-        last_post: After Last Post
-        reply_block: After Reply Block
       cache: Cache
       cache_help: The format has to be <strong>0-31d0-23h0-59m</strong>
+      forum-query-url: Forum query URL
+      forum-query-url-help: E.g. https://doxie.marioslab.io/api/documents/<collectionId>/<sourceId>/query
+      docs-query-url: Documentation query URL
+      docs-query-url-help: E.g. https://doxie.marioslab.io/api/documents/<collectionId>/<sourceId>/query
   forum:
     discussion_list_title: Related Discussions
+    docs_list_title: Resources
     no_results: No related discussions found
+    no_results_docs: No related documentation found

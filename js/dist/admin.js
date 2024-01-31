@@ -13,44 +13,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! flarum/admin/app */ "flarum/admin/app");
 /* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(flarum_admin_app__WEBPACK_IMPORTED_MODULE_0__);
 
-alert("Fuck p");
 flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().initializers.add("badlogic-related-discussions", function () {
   flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().extensionData["for"]("badlogic-related-discussions").registerSetting({
-    setting: "badlogic-related-discussions.allow-guests",
-    type: "boolean",
-    label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.allow_guests")
-  }).registerSetting({
-    setting: "badlogic-related-discussions.generator",
-    type: "select",
-    label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.generator"),
-    options: {
-      random: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.generator_options.random"),
-      title: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.generator_options.title")
-    },
-    "default": "random",
-    help: ""
-  }).registerSetting({
     setting: "badlogic-related-discussions.max-discussions",
     type: "number",
     label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.max_discussions"),
     min: 1,
     help: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.max_discussions_help")
   }).registerSetting({
-    setting: "badlogic-related-discussions.position",
-    type: "select",
-    label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.position"),
-    options: {
-      first_post: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.position_options.first_post"),
-      last_post: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.position_options.last_post"),
-      reply_block: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.position_options.reply_block")
-    },
-    "default": "first_post"
-  }).registerSetting({
     setting: "badlogic-related-discussions.cache",
     type: "text",
     label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.cache"),
     help: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.cache_help"),
     placeholder: "0d0h0m"
+  }).registerSetting({
+    setting: "badlogic-related-discussions.forum-query-url",
+    type: "text",
+    label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.forum-query-url"),
+    help: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.forum-query-url-help"),
+    placeholder: ""
+  }).registerSetting({
+    setting: "badlogic-related-discussions.docs-query-url",
+    type: "text",
+    label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.docs-query-url"),
+    help: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("badlogic-related-discussions.admin.settings.docs-query-url-help"),
+    placeholder: ""
   });
 });
 
