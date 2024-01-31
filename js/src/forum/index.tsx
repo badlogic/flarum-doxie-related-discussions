@@ -4,10 +4,12 @@ import app from "flarum/forum/app";
 import DiscussionPage from "flarum/forum/components/DiscussionPage";
 import PostStream from "flarum/forum/components/PostStream";
 
-app.initializers.add("nearata-related-discussions", () => {
+alert("Hello world");
+
+app.initializers.add("badlogic-related-discussions", () => {
   extend(PostStream.prototype, "view", function (element) {
     const allowGuests = app.forum.attribute(
-      "nearataRelatedDiscussionsAllowGuests"
+      "badlogicRelatedDiscussionsAllowGuests"
     );
 
     if (!app.session.user && !allowGuests) {
@@ -16,9 +18,9 @@ app.initializers.add("nearata-related-discussions", () => {
 
     const discussionId = this.discussion.id();
     const position: string = app.forum.attribute(
-      "nearataRelatedDiscussionsPosition"
+      "badlogicRelatedDiscussionsPosition"
     );
-    const key = "nearataRelatedDiscussions";
+    const key = "badlogicRelatedDiscussions";
 
     if (position === "first_post") {
       element.children?.splice(
@@ -47,7 +49,7 @@ app.initializers.add("nearata-related-discussions", () => {
 
   extend(DiscussionPage.prototype, "mainContent", function (items) {
     const allowGuests = app.forum.attribute(
-      "nearataRelatedDiscussionsAllowGuests"
+      "badlogicRelatedDiscussionsAllowGuests"
     );
 
     if (!app.session.user && !allowGuests) {
@@ -56,12 +58,12 @@ app.initializers.add("nearata-related-discussions", () => {
 
     const discussionId = this.discussion?.id();
     const position: string = app.forum.attribute(
-      "nearataRelatedDiscussionsPosition"
+      "badlogicRelatedDiscussionsPosition"
     );
 
     if (position === "reply_block") {
       items.add(
-        "nearataRelatedDiscussions",
+        "badlogicRelatedDiscussions",
         <RelatedDiscussionList discussionId={discussionId} position={3} />
       );
     }

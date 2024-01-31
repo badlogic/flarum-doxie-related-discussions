@@ -1,6 +1,6 @@
 <?php
 
-namespace Nearata\RelatedDiscussions\Discussion\Filter;
+namespace Badlogic\RelatedDiscussions\Discussion\Filter;
 
 use Carbon\Carbon;
 use Flarum\Discussion\Discussion;
@@ -38,7 +38,7 @@ class RelatedDiscussionsFilter implements FilterInterface
 
     public function getFilterKey(): string
     {
-        return 'nearataRelatedDiscussions';
+        return 'badlogicRelatedDiscussions';
     }
 
     public function filter(FilterState $filterState, string $filterValue, bool $negate)
@@ -60,13 +60,13 @@ class RelatedDiscussionsFilter implements FilterInterface
             return;
         }
 
-        $allowGuests = $this->settings->get('nearata-related-discussions.allow-guests');
+        $allowGuests = $this->settings->get('badlogic-related-discussions.allow-guests');
 
         if (! $allowGuests && $filterState->getActor()->isGuest()) {
             return;
         }
 
-        $cache = (string) $this->settings->get('nearata-related-discussions.cache');
+        $cache = (string) $this->settings->get('badlogic-related-discussions.cache');
 
         preg_match($this->pattern, $cache, $matches);
 
@@ -80,7 +80,7 @@ class RelatedDiscussionsFilter implements FilterInterface
             $ttl = 0;
         }
 
-        $ids = $this->cache->remember('nearataRelatedDiscussions'.$discussionId, $ttl, function () use ($discussion) {
+        $ids = $this->cache->remember('badlogicRelatedDiscussions'.$discussionId, $ttl, function () use ($discussion) {
             return $this->getResults($discussion);
         });
 
@@ -109,13 +109,13 @@ class RelatedDiscussionsFilter implements FilterInterface
             });
         }
 
-        $maxDiscussions = (int) $this->settings->get('nearata-related-discussions.max-discussions');
+        $maxDiscussions = (int) $this->settings->get('badlogic-related-discussions.max-discussions');
 
         if ($maxDiscussions <= 0) {
             $maxDiscussions = 5;
         }
 
-        $generator = (string) $this->settings->get('nearata-related-discussions.generator');
+        $generator = (string) $this->settings->get('badlogic-related-discussions.generator');
 
         if ($generator == 'title') {
             $results = collect([], $maxDiscussions);

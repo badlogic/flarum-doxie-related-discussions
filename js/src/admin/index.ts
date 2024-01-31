@@ -1,70 +1,72 @@
 import app from "flarum/admin/app";
 
-app.initializers.add("nearata-related-discussions", () => {
+alert("Fuck p");
+
+app.initializers.add("badlogic-related-discussions", () => {
   app.extensionData
-    .for("nearata-related-discussions")
+    .for("badlogic-related-discussions")
     .registerSetting({
-      setting: "nearata-related-discussions.allow-guests",
+      setting: "badlogic-related-discussions.allow-guests",
       type: "boolean",
       label: app.translator.trans(
-        "nearata-related-discussions.admin.settings.allow_guests"
+        "badlogic-related-discussions.admin.settings.allow_guests"
       ),
     })
     .registerSetting({
-      setting: "nearata-related-discussions.generator",
+      setting: "badlogic-related-discussions.generator",
       type: "select",
       label: app.translator.trans(
-        "nearata-related-discussions.admin.settings.generator"
+        "badlogic-related-discussions.admin.settings.generator"
       ),
       options: {
         random: app.translator.trans(
-          "nearata-related-discussions.admin.settings.generator_options.random"
+          "badlogic-related-discussions.admin.settings.generator_options.random"
         ),
         title: app.translator.trans(
-          "nearata-related-discussions.admin.settings.generator_options.title"
+          "badlogic-related-discussions.admin.settings.generator_options.title"
         ),
       },
       default: "random",
       help: "",
     })
     .registerSetting({
-      setting: "nearata-related-discussions.max-discussions",
+      setting: "badlogic-related-discussions.max-discussions",
       type: "number",
       label: app.translator.trans(
-        "nearata-related-discussions.admin.settings.max_discussions"
+        "badlogic-related-discussions.admin.settings.max_discussions"
       ),
       min: 1,
       help: app.translator.trans(
-        "nearata-related-discussions.admin.settings.max_discussions_help"
+        "badlogic-related-discussions.admin.settings.max_discussions_help"
       ),
     })
     .registerSetting({
-      setting: "nearata-related-discussions.position",
+      setting: "badlogic-related-discussions.position",
       type: "select",
       label: app.translator.trans(
-        "nearata-related-discussions.admin.settings.position"
+        "badlogic-related-discussions.admin.settings.position"
       ),
       options: {
         first_post: app.translator.trans(
-          "nearata-related-discussions.admin.settings.position_options.first_post"
+          "badlogic-related-discussions.admin.settings.position_options.first_post"
         ),
         last_post: app.translator.trans(
-          "nearata-related-discussions.admin.settings.position_options.last_post"
+          "badlogic-related-discussions.admin.settings.position_options.last_post"
         ),
         reply_block: app.translator.trans(
-          "nearata-related-discussions.admin.settings.position_options.reply_block"
+          "badlogic-related-discussions.admin.settings.position_options.reply_block"
         ),
       },
       default: "first_post",
     })
     .registerSetting({
-      setting: "nearata-related-discussions.cache",
+      setting: "badlogic-related-discussions.cache",
       type: "text",
       label: app.translator.trans(
-        "nearata-related-discussions.admin.settings.cache"
+        "badlogic-related-discussions.admin.settings.cache"
       ),
       help: app.translator.trans(
-        "nearata-related-discussions.admin.settings.cache_help"
+        "badlogic-related-discussions.admin.settings.cache_help"
       ),
       placeholder: "0d0h0m",
     });

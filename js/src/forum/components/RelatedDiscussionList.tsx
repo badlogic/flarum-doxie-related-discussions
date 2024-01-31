@@ -31,7 +31,7 @@ export default class RelatedDiscussionList extends Component {
       return (
         <Placeholder
           text={app.translator.trans(
-            "nearata-related-discussions.forum.no_results"
+            "badlogic-related-discussions.forum.no_results"
           )}
         />
       );
@@ -54,11 +54,11 @@ export default class RelatedDiscussionList extends Component {
   view() {
     return (
       <div
-        class={`DiscussionList nearataRelatedDiscussions position${this.position}`}
+        class={`DiscussionList badlogicRelatedDiscussions position${this.position}`}
       >
         <h3 class="h3 DiscussionList-title">
           {app.translator.trans(
-            "nearata-related-discussions.forum.discussion_list_title"
+            "badlogic-related-discussions.forum.discussion_list_title"
           )}
         </h3>
         <ul class="DiscussionList-discussions" role="feed">

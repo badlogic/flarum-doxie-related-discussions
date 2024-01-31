@@ -1,6 +1,6 @@
 <?php
 
-namespace Nearata\RelatedDiscussions\Validator;
+namespace Badlogic\RelatedDiscussions\Validator;
 
 use Flarum\Foundation\AbstractValidator;
 

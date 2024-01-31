@@ -1,5 +1,5 @@
 {
-    "name": "nearata/flarum-ext-related-discussions",
+    "name": "badlogic/flarum-ext-related-discussions",
     "description": "Shows related discussions.",
     "keywords": [
         "flarum"
@@ -15,14 +15,14 @@
     },
     "authors": [
         {
-            "name": "Nearata",
-            "email": "nearata@protonmail.com",
+            "name": "badlogic",
+            "email": "badlogic@blargh.com",
             "role": "Developer"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Nearata\\RelatedDiscussions\\": "src/"
+            "Badlogic\\RelatedDiscussions\\": "src/"
         }
     },
     "extra": {

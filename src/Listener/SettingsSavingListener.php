@@ -1,6 +1,6 @@
 <?php
 
-namespace Nearata\RelatedDiscussions\Listener;
+namespace Badlogic\RelatedDiscussions\Listener;
 
 use Flarum\Settings\Event\Saving;
 use Illuminate\Support\Arr;
@@ -20,7 +20,7 @@ class SettingsSavingListener
 
     public function handle(Saving $event)
     {
-        $setting = Arr::get($event->settings, 'nearata-related-discussions.cache');
+        $setting = Arr::get($event->settings, 'badlogic-related-discussions.cache');
 
         if (is_null($setting)) {
             return;

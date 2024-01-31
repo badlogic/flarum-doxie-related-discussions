@@ -1,11 +1,13 @@
 <?php
 
-namespace Nearata\RelatedDiscussions;
+namespace Badlogic\RelatedDiscussions;
 
 use Flarum\Discussion\Filter\DiscussionFilterer;
 use Flarum\Extend;
-use Nearata\RelatedDiscussions\Discussion\Filter\RelatedDiscussionsFilter;
-use Nearata\RelatedDiscussions\Listener\SettingsSavingListener;
+use Badlogic\RelatedDiscussions\Discussion\Filter\RelatedDiscussionsFilter;
+use Badlogic\RelatedDiscussions\Listener\SettingsSavingListener;
+
+error_log("WTF is going on");
 
 return [
     (new Extend\Frontend('forum'))
@@ -21,13 +23,13 @@ return [
         ->addFilter(RelatedDiscussionsFilter::class),
 
     (new Extend\Settings)
-        ->default('nearata-related-discussions.allow-guests', false)
-        ->default('nearata-related-discussions.generator', 'random')
-        ->default('nearata-related-discussions.max-discussions', 5)
-        ->default('nearata-related-discussions.position', 'first_post')
-        ->default('nearata-related-discussions.cache', '0d0h0m')
-        ->serializeToForum('nearataRelatedDiscussionsAllowGuests', 'nearata-related-discussions.allow-guests', 'boolval')
-        ->serializeToForum('nearataRelatedDiscussionsPosition', 'nearata-related-discussions.position'),
+        ->default('badlogic-related-discussions.allow-guests', false)
+        ->default('badlogic-related-discussions.generator', 'random')
+        ->default('badlogic-related-discussions.max-discussions', 5)
+        ->default('badlogic-related-discussions.position', 'first_post')
+        ->default('badlogic-related-discussions.cache', '0d0h0m')
+        ->serializeToForum('badlogicRelatedDiscussionsAllowGuests', 'badlogic-related-discussions.allow-guests', 'boolval')
+        ->serializeToForum('badlogicRelatedDiscussionsPosition', 'badlogic-related-discussions.position'),
 
     (new Extend\Event)
         ->listen(\Flarum\Settings\Event\Saving::class, SettingsSavingListener::class),
