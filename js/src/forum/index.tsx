@@ -12,7 +12,6 @@ app.initializers.add("badlogic-related-discussions", () => {
       1,
       0,
       <div class="badlogicRelated">
-        <RelatedDocsList key={"badlogicRelatedDocs"} discussion={this.discussion} />
         <RelatedDiscussionList key={"badlogicRelatedDiscussions"} discussionId={discussionId}/>
       </div>
     );

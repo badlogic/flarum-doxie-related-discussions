@@ -204,78 +204,6 @@ var RelatedDiscussionList = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/forum/components/RelatedDocsList.tsx":
-/*!**************************************************!*\
-  !*** ./src/forum/components/RelatedDocsList.tsx ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ RelatedDocsList)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var flarum_common_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/common/components/LoadingIndicator */ "flarum/common/components/LoadingIndicator");
-/* harmony import */ var flarum_common_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var flarum_common_components_Placeholder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/components/Placeholder */ "flarum/common/components/Placeholder");
-/* harmony import */ var flarum_common_components_Placeholder__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_Placeholder__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/forum/app */ "flarum/forum/app");
-/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_app__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _states_RelatedDocsState__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../states/RelatedDocsState */ "./src/forum/states/RelatedDocsState.ts");
-
-
-
-
-
-
-var RelatedDocsList = /*#__PURE__*/function (_Component) {
-  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(RelatedDocsList, _Component);
-  function RelatedDocsList() {
-    var _this;
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
-    _this.docsState = void 0;
-    _this.discussion = void 0;
-    return _this;
-  }
-  var _proto = RelatedDocsList.prototype;
-  _proto.oninit = function oninit(vnode) {
-    _Component.prototype.oninit.call(this, vnode);
-    this.docsState = new _states_RelatedDocsState__WEBPACK_IMPORTED_MODULE_5__["default"](vnode.attrs.discussion);
-    this.docsState.load();
-  };
-  _proto.content = function content() {
-    if (this.docsState.isLoading()) {
-      return m((flarum_common_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_2___default()), null);
-    }
-    if (!this.docsState.getDocs().length) {
-      return m((flarum_common_components_Placeholder__WEBPACK_IMPORTED_MODULE_3___default()), {
-        text: flarum_forum_app__WEBPACK_IMPORTED_MODULE_4___default().translator.trans("badlogic-related-discussions.forum.no_results")
-      });
-    }
-    return this.docsState.getDocs().map(function (doc, index) {
-      return m("div", null, m("a", {
-        href: doc.docUri,
-        target: "_blank"
-      }, doc.docTitle.split(" - ")[0]));
-    });
-  };
-  _proto.view = function view() {
-    return m("div", {
-      "class": "badlogicRelatedDiscussions"
-    }, m("h3", null, flarum_forum_app__WEBPACK_IMPORTED_MODULE_4___default().translator.trans("badlogic-related-discussions.forum.docs_list_title")), m("div", null, this.content()));
-  };
-  return RelatedDocsList;
-}((flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default()));
-
-
-/***/ }),
-
 /***/ "./src/forum/index.tsx":
 /*!*****************************!*\
   !*** ./src/forum/index.tsx ***!
@@ -291,8 +219,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_app__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var flarum_forum_components_PostStream__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/forum/components/PostStream */ "flarum/forum/components/PostStream");
 /* harmony import */ var flarum_forum_components_PostStream__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_PostStream__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_RelatedDocsList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/RelatedDocsList */ "./src/forum/components/RelatedDocsList.tsx");
-
 
 
 
@@ -303,10 +229,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().initializers.add("badlog
     var discussionId = this.discussion.id();
     (_element$children = element.children) == null ? void 0 : _element$children.splice(1, 0, m("div", {
       "class": "badlogicRelated"
-    }, m(_components_RelatedDocsList__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      key: "badlogicRelatedDocs",
-      discussion: this.discussion
-    }), m(_components_RelatedDiscussionList__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    }, m(_components_RelatedDiscussionList__WEBPACK_IMPORTED_MODULE_0__["default"], {
       key: "badlogicRelatedDiscussions",
       discussionId: discussionId
     })));
@@ -387,186 +310,6 @@ var RelatedDiscussionState = /*#__PURE__*/function () {
     return this.discussions;
   };
   return RelatedDiscussionState;
-}();
-
-
-/***/ }),
-
-/***/ "./src/forum/states/RelatedDocsState.ts":
-/*!**********************************************!*\
-  !*** ./src/forum/states/RelatedDocsState.ts ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ RelatedDocsState)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/forum/app */ "flarum/forum/app");
-/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_app__WEBPACK_IMPORTED_MODULE_2__);
-
-function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-
-
-var RelatedDocsState = /*#__PURE__*/function () {
-  function RelatedDocsState(discussion) {
-    this.discussion = void 0;
-    this.loading = void 0;
-    this.docs = void 0;
-    this.discussion = discussion;
-    this.loading = true;
-    this.docs = [];
-  }
-  var _proto = RelatedDocsState.prototype;
-  _proto.loadFirstPosts = /*#__PURE__*/function () {
-    var _loadFirstPosts = (0,_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(discussionId, numberOfPosts) {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().store.find("posts", {
-              filter: {
-                discussion: discussionId
-              },
-              page: {
-                limit: numberOfPosts
-              }
-            });
-          case 3:
-            response = _context.sent;
-            return _context.abrupt("return", response);
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
-            console.error("Error loading posts:", _context.t0);
-            return _context.abrupt("return", []);
-          case 11:
-          case "end":
-            return _context.stop();
-        }
-      }, _callee, null, [[0, 7]]);
-    }));
-    function loadFirstPosts(_x, _x2) {
-      return _loadFirstPosts.apply(this, arguments);
-    }
-    return loadFirstPosts;
-  }();
-  _proto.load = /*#__PURE__*/function () {
-    var _load = (0,_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
-      var docsSettings, query, posts, _iterator, _step, _post$attribute, post, response, result, seenUris, uniqueDocuments;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
-          case 0:
-            docsSettings = (flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().data.badlogicRelatedDocsSettings);
-            _context2.prev = 1;
-            query = "";
-            _context2.next = 5;
-            return this.loadFirstPosts(this.discussion.id(), 5);
-          case 5:
-            posts = _context2.sent;
-            if (posts) {
-              _context2.next = 8;
-              break;
-            }
-            return _context2.abrupt("return");
-          case 8:
-            _iterator = _createForOfIteratorHelperLoose(posts);
-          case 9:
-            if ((_step = _iterator()).done) {
-              _context2.next = 16;
-              break;
-            }
-            post = _step.value;
-            if (post) query += (_post$attribute = post.attribute("content")) != null ? _post$attribute : "";
-            if (!(query.length > 7000)) {
-              _context2.next = 14;
-              break;
-            }
-            return _context2.abrupt("break", 16);
-          case 14:
-            _context2.next = 9;
-            break;
-          case 16:
-            _context2.next = 18;
-            return fetch(docsSettings.docsQueryUrl, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                k: 25,
-                query: query
-              })
-            });
-          case 18:
-            response = _context2.sent;
-            if (response.ok) {
-              _context2.next = 25;
-              break;
-            }
-            _context2.t0 = Error;
-            _context2.next = 23;
-            return response.text();
-          case 23:
-            _context2.t1 = _context2.sent;
-            throw new _context2.t0(_context2.t1);
-          case 25:
-            _context2.next = 27;
-            return response.json();
-          case 27:
-            result = _context2.sent;
-            if (result.success) {
-              _context2.next = 30;
-              break;
-            }
-            throw new Error("Couldn't fetch related docs");
-          case 30:
-            seenUris = new Set();
-            uniqueDocuments = result.data.filter(function (doc) {
-              if (!seenUris.has(doc.docUri)) {
-                seenUris.add(doc.docUri);
-                return true;
-              }
-              return false;
-            }).splice(0, docsSettings.maxDiscussions);
-            this.docs = uniqueDocuments;
-            _context2.next = 38;
-            break;
-          case 35:
-            _context2.prev = 35;
-            _context2.t2 = _context2["catch"](1);
-            console.error(_context2.t2);
-          case 38:
-            _context2.prev = 38;
-            this.loading = false;
-            m.redraw();
-            return _context2.finish(38);
-          case 42:
-          case "end":
-            return _context2.stop();
-        }
-      }, _callee2, this, [[1, 35, 38, 42]]);
-    }));
-    function load() {
-      return _load.apply(this, arguments);
-    }
-    return load;
-  }();
-  _proto.isLoading = function isLoading() {
-    return this.loading;
-  };
-  _proto.getDocs = function getDocs() {
-    return this.docs;
-  };
-  return RelatedDocsState;
 }();
 
 

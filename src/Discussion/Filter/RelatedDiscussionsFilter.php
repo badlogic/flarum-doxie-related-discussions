@@ -58,19 +58,9 @@ class RelatedDiscussionsFilter implements FilterInterface
             return;
         }
 
-        $cache = (string) $this->settings->get('badlogic-related-discussions.cache');
+        $config = json_decode((string) $this->settings->get('badlogic-related-discussions.config'));
+        $ttl = $config->cacheHours * 60;
 
-        preg_match($this->pattern, $cache, $matches);
-
-        $days = intval($matches['days']);
-        $hours = intval($matches['hours']);
-        $minutes = intval($matches['minutes']);
-
-        if ($days || $hours || $minutes) {
-            $ttl = Carbon::now()->addDays($days)->addHours($hours)->addMinutes($minutes);
-        } else {
-            $ttl = 0;
-        }
 
         $ids = $this->cache->remember('badlogicRelatedDiscussions'.$discussionId, $ttl, function () use ($discussion) {
             return $this->getResults($discussion);
@@ -95,9 +85,9 @@ class RelatedDiscussionsFilter implements FilterInterface
         $client = new \GuzzleHttp\Client();
 
         try {
-            $forumQueryUrl = (string) $this->settings->get('badlogic-related-discussions.forum-query-url');
-            $maxDicussions = (int) $this->settings->get('badlogic-related-discussions.max-discussions');
-            $response = $client->post($forumQueryUrl, [
+            $config = json_decode((string) $this->settings->get('badlogic-related-discussions.config'));
+            $queryUrl = $config->doxieApiUrl . "/documents/" . $config->relatedDiscussionsSourceId . "/query";
+            $response = $client->post($queryUrl, [
                 'json' => ['k' => 50, 'query' => $postsText]
             ]);
 
@@ -112,7 +102,7 @@ class RelatedDiscussionsFilter implements FilterInterface
                             return $matches[1] ?? null;
                         })
                         ->filter()
-                        ->take($maxDicussions)
+                        ->take($config->maxRelatedDiscussions)
                         ->values();
         } catch (\Exception $e) {
             $docUris = collect([]);

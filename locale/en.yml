@@ -6,9 +6,9 @@ badlogic-related-discussions:
       cache: Cache
       cache_help: The format has to be <strong>0-31d0-23h0-59m</strong>
       forum-query-url: Forum query URL
-      forum-query-url-help: E.g. https://doxie.marioslab.io/api/documents/<collectionId>/<sourceId>/query
-      docs-query-url: Documentation query URL
-      docs-query-url-help: E.g. https://doxie.marioslab.io/api/documents/<collectionId>/<sourceId>/query
+      forum-query-url-help: E.g. https://doxie.marioslab.io/api/documents/<sourceId>/query
+      tag_docs_urls_label: Tag to Doxie collection id (and optional source id)
+      tag_docs_urls_help: One pair per line, e.g. "Unity -> <collectionId> <sourceId>?"
   forum:
     discussion_list_title: Related Discussions
     docs_list_title: Resources
