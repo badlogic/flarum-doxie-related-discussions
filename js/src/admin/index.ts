@@ -126,8 +126,6 @@ export class RelatedDiscussionsSettings extends LitElement {
         this.config = JSON.parse(config);
       }
 
-      this.config.doxieApiUrl = "http://192.168.1.12:3333/api";
-
       if (this.config.doxieApiUrl.length > 0 && this.config.doxieApiToken.length > 0) {
         let response = await fetch(this.config.doxieApiUrl + "/bots", {headers: {"Authorization": this.config.doxieApiToken}});
         if (!response.ok) {
@@ -266,11 +264,13 @@ export class RelatedDiscussionsSettings extends LitElement {
     }
     this.config.doxieApiToken = this.querySelector<HTMLInputElement>("#doxieApiToken")!.value;
 
-    this.config.maxRelatedDiscussions = parseInt(this.querySelector<HTMLInputElement>("#maxRelatedDiscussions")!.value);
-    this.config.cacheHours = parseInt(this.querySelector<HTMLInputElement>("#cacheHours")!.value);
-    this.config.relatedDiscussionsSourceId = this.querySelector<HTMLSelectElement>("#relatedDiscussionsSourceId")!.value;
+    if (this.bots.length > 0) {
+      this.config.maxRelatedDiscussions = parseInt(this.querySelector<HTMLInputElement>("#maxRelatedDiscussions")!.value);
+      this.config.cacheHours = parseInt(this.querySelector<HTMLInputElement>("#cacheHours")!.value);
+      this.config.relatedDiscussionsSourceId = this.querySelector<HTMLSelectElement>("#relatedDiscussionsSourceId")!.value;
 
-    this.config.botId = this.querySelector<HTMLSelectElement>("#botId")!.value;
+      this.config.botId = this.querySelector<HTMLSelectElement>("#botId")!.value;
+    }
     this.save();
   }
 

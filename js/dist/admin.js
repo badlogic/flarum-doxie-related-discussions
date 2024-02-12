@@ -81,71 +81,70 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
             if (config && config.trim().length > 0) {
               this.config = JSON.parse(config);
             }
-            this.config.doxieApiUrl = "http://192.168.1.12:3333/api";
             if (!(this.config.doxieApiUrl.length > 0 && this.config.doxieApiToken.length > 0)) {
-              _context.next = 36;
+              _context.next = 35;
               break;
             }
-            _context.next = 8;
+            _context.next = 7;
             return fetch(this.config.doxieApiUrl + "/bots", {
               headers: {
                 "Authorization": this.config.doxieApiToken
               }
             });
-          case 8:
+          case 7:
             response = _context.sent;
             if (response.ok) {
-              _context.next = 12;
+              _context.next = 11;
               break;
             }
             alert("Could not fetch bots. Check Doxie API URL and token");
             return _context.abrupt("return");
-          case 12:
-            _context.next = 14;
+          case 11:
+            _context.next = 13;
             return response.json();
-          case 14:
+          case 13:
             bots = _context.sent;
             if (bots.success) {
-              _context.next = 18;
+              _context.next = 17;
               break;
             }
             alert("Could not fetch bots. Check Doxie API URL and token");
             return _context.abrupt("return");
-          case 18:
+          case 17:
             this.bots = bots.data;
-            _context.next = 21;
+            _context.next = 20;
             return fetch(this.config.doxieApiUrl + "/sources", {
               headers: {
                 "Authorization": this.config.doxieApiToken
               }
             });
-          case 21:
+          case 20:
             response = _context.sent;
             if (response.ok) {
-              _context.next = 25;
+              _context.next = 24;
               break;
             }
             alert("Could not fetch sources. Check Doxie API URL and token");
             return _context.abrupt("return");
-          case 25:
-            _context.next = 27;
+          case 24:
+            _context.next = 26;
             return response.json();
-          case 27:
+          case 26:
             sources = _context.sent;
             if (sources.success) {
-              _context.next = 31;
+              _context.next = 30;
               break;
             }
             alert("Could not fetch sources. Check Doxie API URL and token");
             return _context.abrupt("return");
-          case 31:
+          case 30:
             this.sources = sources.data;
-            _context.next = 34;
+            _context.next = 33;
             return flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().request({
               method: 'GET',
               url: flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().forum.attribute('apiUrl') + '/tags'
             });
-          case 34:
+          case 33:
             tagsResponse = _context.sent;
             this.tags = tagsResponse.data.map(function (tag) {
               return {
@@ -153,24 +152,24 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
                 description: tag.attributes.description
               };
             });
-          case 36:
-            _context.next = 42;
+          case 35:
+            _context.next = 41;
             break;
-          case 38:
-            _context.prev = 38;
+          case 37:
+            _context.prev = 37;
             _context.t0 = _context["catch"](0);
             console.error(_context.t0);
             alert("Could not load configuration");
-          case 42:
-            _context.prev = 42;
+          case 41:
+            _context.prev = 41;
             this.isLoading = false;
             this.requestUpdate();
-            return _context.finish(42);
-          case 46:
+            return _context.finish(41);
+          case 45:
           case "end":
             return _context.stop();
         }
-      }, _callee, this, [[0, 38, 42, 46]]);
+      }, _callee, this, [[0, 37, 41, 45]]);
     }));
     function load() {
       return _load.apply(this, arguments);
@@ -256,10 +255,12 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
       this.config.doxieApiUrl = this.config.doxieApiUrl.substring(0, this.config.doxieApiUrl.length - 1);
     }
     this.config.doxieApiToken = this.querySelector("#doxieApiToken").value;
-    this.config.maxRelatedDiscussions = parseInt(this.querySelector("#maxRelatedDiscussions").value);
-    this.config.cacheHours = parseInt(this.querySelector("#cacheHours").value);
-    this.config.relatedDiscussionsSourceId = this.querySelector("#relatedDiscussionsSourceId").value;
-    this.config.botId = this.querySelector("#botId").value;
+    if (this.bots.length > 0) {
+      this.config.maxRelatedDiscussions = parseInt(this.querySelector("#maxRelatedDiscussions").value);
+      this.config.cacheHours = parseInt(this.querySelector("#cacheHours").value);
+      this.config.relatedDiscussionsSourceId = this.querySelector("#relatedDiscussionsSourceId").value;
+      this.config.botId = this.querySelector("#botId").value;
+    }
     this.save();
   };
   _proto.save = /*#__PURE__*/function () {
