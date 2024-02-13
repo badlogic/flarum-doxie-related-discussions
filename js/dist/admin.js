@@ -12,22 +12,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   RelatedDiscussionsSettings: () => (/* binding */ RelatedDiscussionsSettings)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/taggedTemplateLiteralLoose */ "./node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/initializerDefineProperty */ "./node_modules/@babel/runtime/helpers/esm/initializerDefineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/esm/applyDecoratedDescriptor */ "./node_modules/@babel/runtime/helpers/esm/applyDecoratedDescriptor.js");
-/* harmony import */ var _babel_runtime_helpers_esm_initializerWarningHelper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/esm/initializerWarningHelper */ "./node_modules/@babel/runtime/helpers/esm/initializerWarningHelper.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! flarum/admin/app */ "flarum/admin/app");
-/* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(flarum_admin_app__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var lit__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lit */ "./node_modules/lit/index.js");
-/* harmony import */ var lit_decorators_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lit/decorators.js */ "./node_modules/lit/decorators.js");
-/* harmony import */ var lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lit-html/directives/repeat.js */ "./node_modules/lit-html/development/directives/repeat.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/taggedTemplateLiteralLoose */ "./node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteralLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/initializerDefineProperty */ "./node_modules/@babel/runtime/helpers/esm/initializerDefineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/esm/applyDecoratedDescriptor */ "./node_modules/@babel/runtime/helpers/esm/applyDecoratedDescriptor.js");
+/* harmony import */ var _babel_runtime_helpers_esm_initializerWarningHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/esm/initializerWarningHelper */ "./node_modules/@babel/runtime/helpers/esm/initializerWarningHelper.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! flarum/admin/app */ "flarum/admin/app");
+/* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(flarum_admin_app__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var lit__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lit */ "./node_modules/lit/index.js");
+/* harmony import */ var lit_decorators_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lit/decorators.js */ "./node_modules/lit/decorators.js");
+/* harmony import */ var lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lit-html/directives/repeat.js */ "./node_modules/lit-html/development/directives/repeat.js");
 
 
 
@@ -35,28 +36,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
 
 
 
 
 
 
-var styles = "\n.flex {\n  display: flex;\n}\n\n.flex-col {\n  flex-direction: column;\n}\n\n.gap-2 {\n  gap: 0.5em;\n}\n\n.gap-4 {\n  gap: 1em;\n}\n\n.w-full {\n  width: 100%;\n}\n\n.h-full {\n  height: 100%;\n}\n\n.self-start {\n  align-self: flex-start;\n}\n\n.mt-4 {\n  margin-top: 1em;\n}\n\n.items-center {\n  align-items: center;\n}\n\n.text-xs\t{font-size: 0.75rem; line-height: 1rem; }\n.text-sm\t{font-size: 0.875rem; line-height: 1.25rem; }\n.text-base\t{font-size: 1rem; line-height: 1.5rem; }\n.text-lg\t{font-size: 1.125rem; line-height: 1.75rem; }\n.text-xl\t{font-size: 1.25rem; line-height: 1.75rem; }\n.font-semibold {font-weight: 600;}\n";
-var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_11__.customElement)("related-discussions-settings"), _dec2 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_11__.state)(), _dec3 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_11__.state)(), _dec4 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_11__.state)(), _dec5 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_11__.state)(), _dec6 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_11__.state)(), _dec7 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_11__.state)(), _dec(_class = (_class2 = /*#__PURE__*/function (_LitElement) {
-  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_4__["default"])(RelatedDiscussionsSettings, _LitElement);
+var styles = "\n.flex {\n  display: flex;\n}\n\n.flex-col {\n  flex-direction: column;\n}\n\n.flex-wrap {\n  flex-wrap: wrap;\n}\n\n.gap-2 {\n  gap: 0.5em;\n}\n\n.gap-4 {\n  gap: 1em;\n}\n\n.w-full {\n  width: 100%;\n}\n\n.h-full {\n  height: 100%;\n}\n\n.self-start {\n  align-self: flex-start;\n}\n\n.mt-4 {\n  margin-top: 1em;\n}\n\n.items-center {\n  align-items: center;\n}\n\n.sticky {\n  position: sticky;\n  top: 60px;\n}\n\n.text-xs\t{font-size: 0.75rem; line-height: 1rem; }\n.text-sm\t{font-size: 0.875rem; line-height: 1.25rem; }\n.text-base\t{font-size: 1rem; line-height: 1.5rem; }\n.text-lg\t{font-size: 1.125rem; line-height: 1.75rem; }\n.text-xl\t{font-size: 1.25rem; line-height: 1.75rem; }\n.font-semibold {font-weight: 600;}\n";
+var defaultConfig = {
+  maxRelatedDiscussions: 5,
+  cacheHours: 24,
+  doxieApiUrl: "",
+  doxieApiToken: "",
+  relatedDiscussionsSourceId: "",
+  botUser: "",
+  botId: "",
+  tagsToSources: []
+};
+var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_12__.customElement)("related-discussions-settings"), _dec2 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_12__.state)(), _dec3 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_12__.state)(), _dec4 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_12__.state)(), _dec5 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_12__.state)(), _dec6 = (0,lit_decorators_js__WEBPACK_IMPORTED_MODULE_12__.state)(), _dec(_class = (_class2 = /*#__PURE__*/function (_LitElement) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_5__["default"])(RelatedDiscussionsSettings, _LitElement);
   function RelatedDiscussionsSettings() {
     var _this;
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
     _this = _LitElement.call.apply(_LitElement, [this].concat(args)) || this;
-    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, "isLoading", _descriptor, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__["default"])(_this));
-    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, "saved", _descriptor2, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__["default"])(_this));
-    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, "config", _descriptor3, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__["default"])(_this));
-    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, "sources", _descriptor4, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__["default"])(_this));
-    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, "bots", _descriptor5, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__["default"])(_this));
-    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, "tags", _descriptor6, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__["default"])(_this));
+    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, "isLoading", _descriptor, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
+    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, "config", _descriptor2, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
+    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, "sources", _descriptor3, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
+    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, "bots", _descriptor4, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
+    (0,_babel_runtime_helpers_esm_initializerDefineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, "tags", _descriptor5, (0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
     return _this;
   }
   var _proto = RelatedDiscussionsSettings.prototype;
@@ -70,81 +81,83 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
     this.load();
   };
   _proto.load = /*#__PURE__*/function () {
-    var _load = (0,_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee() {
+    var _load = (0,_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee() {
       var config, response, bots, sources, tagsResponse;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee$(_context) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            config = (flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().data.settings["badlogic-related-discussions.config"]);
+            this.isLoading = true;
+            this.requestUpdate();
+            _context.prev = 2;
+            config = (flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().data.settings["badlogic-related-discussions.config"]);
             console.log(config);
             if (config && config.trim().length > 0) {
               this.config = JSON.parse(config);
             }
             if (!(this.config.doxieApiUrl.length > 0 && this.config.doxieApiToken.length > 0)) {
-              _context.next = 35;
+              _context.next = 37;
               break;
             }
-            _context.next = 7;
+            _context.next = 9;
             return fetch(this.config.doxieApiUrl + "/bots", {
               headers: {
                 "Authorization": this.config.doxieApiToken
               }
             });
-          case 7:
+          case 9:
             response = _context.sent;
             if (response.ok) {
-              _context.next = 11;
+              _context.next = 13;
               break;
             }
             alert("Could not fetch bots. Check Doxie API URL and token");
             return _context.abrupt("return");
-          case 11:
-            _context.next = 13;
-            return response.json();
           case 13:
+            _context.next = 15;
+            return response.json();
+          case 15:
             bots = _context.sent;
             if (bots.success) {
-              _context.next = 17;
+              _context.next = 19;
               break;
             }
             alert("Could not fetch bots. Check Doxie API URL and token");
             return _context.abrupt("return");
-          case 17:
+          case 19:
             this.bots = bots.data;
-            _context.next = 20;
+            _context.next = 22;
             return fetch(this.config.doxieApiUrl + "/sources", {
               headers: {
                 "Authorization": this.config.doxieApiToken
               }
             });
-          case 20:
+          case 22:
             response = _context.sent;
             if (response.ok) {
-              _context.next = 24;
+              _context.next = 26;
               break;
             }
             alert("Could not fetch sources. Check Doxie API URL and token");
             return _context.abrupt("return");
-          case 24:
-            _context.next = 26;
-            return response.json();
           case 26:
+            _context.next = 28;
+            return response.json();
+          case 28:
             sources = _context.sent;
             if (sources.success) {
-              _context.next = 30;
+              _context.next = 32;
               break;
             }
             alert("Could not fetch sources. Check Doxie API URL and token");
             return _context.abrupt("return");
-          case 30:
+          case 32:
             this.sources = sources.data;
-            _context.next = 33;
-            return flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().request({
+            _context.next = 35;
+            return flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().request({
               method: 'GET',
-              url: flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().forum.attribute('apiUrl') + '/tags'
+              url: flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().forum.attribute('apiUrl') + '/tags'
             });
-          case 33:
+          case 35:
             tagsResponse = _context.sent;
             this.tags = tagsResponse.data.map(function (tag) {
               return {
@@ -152,24 +165,24 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
                 description: tag.attributes.description
               };
             });
-          case 35:
-            _context.next = 41;
-            break;
           case 37:
-            _context.prev = 37;
-            _context.t0 = _context["catch"](0);
+            _context.next = 43;
+            break;
+          case 39:
+            _context.prev = 39;
+            _context.t0 = _context["catch"](2);
             console.error(_context.t0);
             alert("Could not load configuration");
-          case 41:
-            _context.prev = 41;
+          case 43:
+            _context.prev = 43;
             this.isLoading = false;
             this.requestUpdate();
-            return _context.finish(41);
-          case 45:
+            return _context.finish(43);
+          case 47:
           case "end":
             return _context.stop();
         }
-      }, _callee, this, [[0, 37, 41, 45]]);
+      }, _callee, this, [[2, 39, 43, 47]]);
     }));
     function load() {
       return _load.apply(this, arguments);
@@ -200,7 +213,7 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
         tagToSources.sources.push(source._id);
       } else {
         tagToSources.sources = tagToSources.sources.filter(function (other) {
-          return other != tag;
+          return other != source._id;
         });
       }
       _this2.handleInput();
@@ -227,27 +240,73 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
       url += botId + (sources.length > 0 ? "?sources=" + sourcesParam : "");
       window.open(url, "_blank");
     };
-    if (this.isLoading) return (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject || (_templateObject = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["<div>Loading ...</div>"])));
-    return (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["<style>", "</style><div class=\"flex flex-col gap-2\" class=\"width: 320px\" @change=", " @input=", ">\n      <h2>Doxie Configuration</h2>\n      <label class=\"font-semibold mt-4\">Doxie API URL</label>\n      <span>E.g. https://doxie.marioslab.io/api</span>\n      <input id=\"doxieApiUrl\" class=\"self-start w-full\" value=", ">\n      <label class=\"font-semibold mt-4\">Doxie Token</label>\n      <input id=\"doxieApiToken\" class=\"self-start w-full\" value=", ">\n\n      ", "\n    </div>"])), styles, function () {
+    if (this.isLoading) return (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject || (_templateObject = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["<div>Loading ...</div>"])));
+    return (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject2 || (_templateObject2 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["<style>", "</style><div class=\"flex flex-col gap-2\" style=\"position: relative;\" @change=", " @input=", ">\n      <h2>Doxie Configuration</h2>\n      <label class=\"font-semibold mt-4\">Doxie API URL</label>\n      <span>E.g. https://doxie.marioslab.io/api</span>\n      <input id=\"doxieApiUrl\" class=\"self-start w-full\" value=", ">\n      <label class=\"font-semibold mt-4\">Doxie Token</label>\n      <input id=\"doxieApiToken\" class=\"self-start w-full\" value=", ">\n\n      <div class=\"flex gap-2 items-center\">\n        <button class=\"self-start\" @click=", ">Reset config</button>\n        <button class=\"self-start\" @click=", ">Save</button>\n      </div>\n\n      ", "\n    </div>"])), styles, function () {
       return _this2.handleInput();
     }, function () {
       return _this2.handleInput();
-    }, this.config.doxieApiUrl, this.config.doxieApiToken, this.bots.length > 0 && this.sources.length > 0 ? (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n\n      <h2>Related discussions</h2>\n      <label class=\"font-semibold\">Max. related discussions</label>\n      <input id=\"maxRelatedDiscussions\" type=\"number\" min=\"1\" class=\"self-start\" value=", ">\n      <label class=\"font-semibold\">Cache related discussions for N hours</label>\n      <input id=\"cacheHours\" type=\"number\" min=\"0\" class=\"self-start\" value=", ">\n      <label class=\"font-semibold mt-4\">Related discussions Doxie source</label>\n      <span class=\"text-xs\">Doxie source to fetch related discussions from</span>\n      <select id=\"relatedDiscussionsSourceId\" class=\"self-start\">\n        ", "\n      </select>\n\n      <h2>Answer bot</h2>\n      <label class=\"font-semibold\">Bot to use for answering questions</label>\n      <div class=\"flex items-center gap-2\">\n        <select id=\"botId\" class=\"self-start\" style=\"padding: 0.25em 0.5em;\">\n          ", "\n        </select>\n        <button @click=", ">Test</button>\n      </div>\n      <label class=\"font-semibold mt-4\">Sources to use to answer questions with given tag</label>\n      ", "\n      "])), this.config.maxRelatedDiscussions, this.config.cacheHours, (0,lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_12__.repeat)(this.sources, function (source) {
-      return (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["<option value=", " ?selected=", ">", "</option>"])), source._id, _this2.config.relatedDiscussionsSourceId == source._id, source.name);
-    }), (0,lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_12__.repeat)(this.bots, function (bot) {
-      return (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["<option value=", " ?selected=", ">", "</option>"])), bot._id, _this2.config.botId == bot._id, bot.name);
+    }, this.config.doxieApiUrl, this.config.doxieApiToken, function () {
+      return _this2.reset();
+    }, function () {
+      return _this2.save(_this2.bots.length == 0 && _this2.sources.length == 0);
+    }, this.bots.length > 0 && this.sources.length > 0 ? (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject3 || (_templateObject3 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["\n\n      <h2>Related discussions</h2>\n      <label class=\"font-semibold\">Max. related discussions</label>\n      <input id=\"maxRelatedDiscussions\" type=\"number\" min=\"1\" class=\"self-start\" value=", ">\n      <label class=\"font-semibold\">Cache related discussions for N hours</label>\n      <input id=\"cacheHours\" type=\"number\" min=\"0\" class=\"self-start\" value=", ">\n      <label class=\"font-semibold mt-4\">Related discussions Doxie source</label>\n      <span class=\"text-xs\">Doxie source to fetch related discussions from</span>\n      <select id=\"relatedDiscussionsSourceId\" class=\"self-start\">\n        ", "\n      </select>\n\n      <h2>Answer bot</h2>\n      <label class=\"font-semibold\">Forum user name of bot</label>\n      <input id=\"botUser\" class=\"self-start\">\n      <label class=\"font-semibold\">Bot to use for answering questions</label>\n      <div class=\"flex items-center gap-2\">\n        <select id=\"botId\" class=\"self-start\" style=\"padding: 0.25em 0.5em;\">\n          ", "\n        </select>\n        <button @click=", ">Test</button>\n      </div>\n      <label class=\"font-semibold mt-4\">Sources to use to answer questions with given tag</label>\n      ", "\n      "])), this.config.maxRelatedDiscussions, this.config.cacheHours, (0,lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_13__.repeat)(this.sources, function (source) {
+      return (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject4 || (_templateObject4 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["<option value=", " ?selected=", ">", "</option>"])), source._id, _this2.config.relatedDiscussionsSourceId == source._id, source.name);
+    }), (0,lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_13__.repeat)(this.bots, function (bot) {
+      return (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject5 || (_templateObject5 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["<option value=", " ?selected=", ">", "</option>"])), bot._id, _this2.config.botId == bot._id, bot.name);
     }), function () {
       return openTestTab(_this2.config.botId, []);
-    }, (0,lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_12__.repeat)(this.tags, function (tag) {
-      return (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject6 || (_templateObject6 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n        <div class=\"flex items-center gap-2 mt-4\">\n          <span class=\"font-semibold self-start\" style=\"border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 5px; padding: 0.25em 0.5em;\">", "</span>\n          <button @click=", ">Test</button>\n        </div>\n        <div class=\"flex gap-4\">\n          ", "\n        </div>\n      "])), tag.name, function () {
+    }, (0,lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_13__.repeat)(this.tags, function (tag) {
+      return (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject6 || (_templateObject6 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["\n        <div class=\"flex items-center gap-2 mt-4\">\n          <span class=\"font-semibold self-start\" style=\"border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 5px; padding: 0.25em 0.5em;\">", "</span>\n          <button @click=", ">Test</button>\n        </div>\n        <div class=\"flex flex-wrap gap-4\">\n          ", "\n        </div>\n      "])), tag.name, function () {
         return openTestTab(_this2.config.botId, getSourcesForTag(tag.name));
-      }, (0,lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_12__.repeat)(_this2.sources, function (source) {
-        return (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject7 || (_templateObject7 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["<label class=\"flex items-center gap-2\"><input type=\"checkbox\" ?checked=", " @change=", ">", "</label>"])), isSourceForTag(tag.name, source), function (ev) {
+      }, (0,lit_html_directives_repeat_js__WEBPACK_IMPORTED_MODULE_13__.repeat)(_this2.sources, function (source) {
+        return (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject7 || (_templateObject7 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["<label class=\"flex items-center gap-2\"><input type=\"checkbox\" ?checked=", " @change=", ">", "</label>"])), isSourceForTag(tag.name, source), function (ev) {
           return setSourceForTag(tag.name, source, ev);
         }, source.name);
       }));
-    })) : (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["<div></div>"]))));
+    })) : (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject8 || (_templateObject8 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["<div></div>"]))));
   };
+  _proto.reset = /*#__PURE__*/function () {
+    var _reset = (0,_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee2() {
+      var key, value, _body;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            key = 'badlogic-related-discussions.config';
+            value = "";
+            _context2.prev = 2;
+            _context2.next = 5;
+            return flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().request({
+              method: 'POST',
+              url: flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().forum.attribute('apiUrl') + '/settings',
+              body: (_body = {}, _body[key] = value, _body),
+              errorHandler: function errorHandler(error) {
+                console.error('Failed to save settings:', error);
+                throw error;
+              }
+            });
+          case 5:
+            this.bots = [];
+            this.sources = [];
+            this.config = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultConfig);
+            this.load();
+            _context2.next = 15;
+            break;
+          case 11:
+            _context2.prev = 11;
+            _context2.t0 = _context2["catch"](2);
+            alert("Could not save settings");
+            console.error('Error saving settings:', _context2.t0);
+          case 15:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2, this, [[2, 11]]);
+    }));
+    function reset() {
+      return _reset.apply(this, arguments);
+    }
+    return reset;
+  }();
   _proto.handleInput = function handleInput() {
     if (this.isLoading) return;
     this.config.doxieApiUrl = this.querySelector("#doxieApiUrl").value;
@@ -256,105 +315,93 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
     }
     this.config.doxieApiToken = this.querySelector("#doxieApiToken").value;
     if (this.bots.length > 0) {
+      this.config.botUser = this.querySelector("#botUser").value;
       this.config.maxRelatedDiscussions = parseInt(this.querySelector("#maxRelatedDiscussions").value);
       this.config.cacheHours = parseInt(this.querySelector("#cacheHours").value);
       this.config.relatedDiscussionsSourceId = this.querySelector("#relatedDiscussionsSourceId").value;
       this.config.botId = this.querySelector("#botId").value;
     }
-    this.save();
   };
   _proto.save = /*#__PURE__*/function () {
-    var _save = (0,_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee2() {
-      var _this3 = this;
-      var key, value, _body;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
+    var _save = (0,_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee3(reload) {
+      var key, value, _body2;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
           case 0:
+            if (reload === void 0) {
+              reload = false;
+            }
             key = 'badlogic-related-discussions.config';
             value = JSON.stringify(this.config);
-            _context2.prev = 2;
-            _context2.next = 5;
-            return flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().request({
+            _context3.prev = 3;
+            _context3.next = 6;
+            return flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().request({
               method: 'POST',
-              url: flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().forum.attribute('apiUrl') + '/settings',
-              body: (_body = {}, _body[key] = value, _body),
+              url: flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().forum.attribute('apiUrl') + '/settings',
+              body: (_body2 = {}, _body2[key] = value, _body2),
               errorHandler: function errorHandler(error) {
                 console.error('Failed to save settings:', error);
                 throw error;
               }
             });
-          case 5:
+          case 6:
             console.log('Settings saved successfully.');
-            this.saved = true;
-            this.requestUpdate();
-            setTimeout(function () {
-              _this3.saved = false;
-              _this3.requestUpdate();
-            }, 3000);
-            _context2.next = 16;
+            if (reload) {
+              this.isLoading = true;
+              this.requestUpdate();
+              this.load();
+            } else {
+              this.requestUpdate();
+            }
+            _context3.next = 15;
             break;
-          case 11:
-            _context2.prev = 11;
-            _context2.t0 = _context2["catch"](2);
+          case 10:
+            _context3.prev = 10;
+            _context3.t0 = _context3["catch"](3);
             alert("Could not save settings");
-            console.error('Error saving settings:', _context2.t0);
-            throw _context2.t0;
-          case 16:
+            console.error('Error saving settings:', _context3.t0);
+            throw _context3.t0;
+          case 15:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
-      }, _callee2, this, [[2, 11]]);
+      }, _callee3, this, [[3, 10]]);
     }));
-    function save() {
+    function save(_x) {
       return _save.apply(this, arguments);
     }
     return save;
   }();
   return RelatedDiscussionsSettings;
-}(lit__WEBPACK_IMPORTED_MODULE_10__.LitElement), (_descriptor = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_5__["default"])(_class2.prototype, "isLoading", [_dec2], {
+}(lit__WEBPACK_IMPORTED_MODULE_11__.LitElement), (_descriptor = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_6__["default"])(_class2.prototype, "isLoading", [_dec2], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: function initializer() {
     return true;
   }
-}), _descriptor2 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_5__["default"])(_class2.prototype, "saved", [_dec3], {
+}), _descriptor2 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_6__["default"])(_class2.prototype, "config", [_dec3], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: function initializer() {
-    return false;
+    return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultConfig);
   }
-}), _descriptor3 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_5__["default"])(_class2.prototype, "config", [_dec4], {
-  configurable: true,
-  enumerable: true,
-  writable: true,
-  initializer: function initializer() {
-    return {
-      maxRelatedDiscussions: 5,
-      cacheHours: 24,
-      doxieApiUrl: "",
-      doxieApiToken: "",
-      relatedDiscussionsSourceId: "",
-      botId: "",
-      tagsToSources: []
-    };
-  }
-}), _descriptor4 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_5__["default"])(_class2.prototype, "sources", [_dec5], {
+}), _descriptor3 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_6__["default"])(_class2.prototype, "sources", [_dec4], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: function initializer() {
     return [];
   }
-}), _descriptor5 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_5__["default"])(_class2.prototype, "bots", [_dec6], {
+}), _descriptor4 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_6__["default"])(_class2.prototype, "bots", [_dec5], {
   configurable: true,
   enumerable: true,
   writable: true,
   initializer: function initializer() {
     return [];
   }
-}), _descriptor6 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_5__["default"])(_class2.prototype, "tags", [_dec7], {
+}), _descriptor5 = (0,_babel_runtime_helpers_esm_applyDecoratedDescriptor__WEBPACK_IMPORTED_MODULE_6__["default"])(_class2.prototype, "tags", [_dec6], {
   configurable: true,
   enumerable: true,
   writable: true,
@@ -363,7 +410,7 @@ var RelatedDiscussionsSettings = (_dec = (0,lit_decorators_js__WEBPACK_IMPORTED_
   }
 })), _class2)) || _class);
 var SettingsForm = /*#__PURE__*/function (_Component) {
-  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_4__["default"])(SettingsForm, _Component);
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_5__["default"])(SettingsForm, _Component);
   function SettingsForm() {
     return _Component.apply(this, arguments) || this;
   }
@@ -376,15 +423,15 @@ var SettingsForm = /*#__PURE__*/function (_Component) {
   _proto2.oncreate = function oncreate(vnode) {
     _Component.prototype.oncreate.call(this, vnode);
     var litHost = document.getElementById("lit-host");
-    var litTemplate = (0,lit__WEBPACK_IMPORTED_MODULE_10__.html)(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(["<related-discussions-settings></related-discussions-settings>"])));
+    var litTemplate = (0,lit__WEBPACK_IMPORTED_MODULE_11__.html)(_templateObject9 || (_templateObject9 = (0,_babel_runtime_helpers_esm_taggedTemplateLiteralLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(["<related-discussions-settings></related-discussions-settings>"])));
     if (litHost) {
-      (0,lit__WEBPACK_IMPORTED_MODULE_10__.render)(litTemplate, litHost);
+      (0,lit__WEBPACK_IMPORTED_MODULE_11__.render)(litTemplate, litHost);
     }
   };
   return SettingsForm;
-}((flarum_common_Component__WEBPACK_IMPORTED_MODULE_9___default()));
-flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().initializers.add("badlogic-related-discussions-custom-settings", function () {
-  flarum_admin_app__WEBPACK_IMPORTED_MODULE_8___default().extensionData["for"]("badlogic-related-discussions").registerSetting(function () {
+}((flarum_common_Component__WEBPACK_IMPORTED_MODULE_10___default()));
+flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().initializers.add("badlogic-related-discussions-custom-settings", function () {
+  flarum_admin_app__WEBPACK_IMPORTED_MODULE_9___default().extensionData["for"]("badlogic-related-discussions").registerSetting(function () {
     return m(SettingsForm);
   });
 });

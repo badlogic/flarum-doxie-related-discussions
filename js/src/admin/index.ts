@@ -13,6 +13,10 @@ const styles = `
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .gap-2 {
   gap: 0.5em;
 }
@@ -39,6 +43,11 @@ const styles = `
 
 .items-center {
   align-items: center;
+}
+
+.sticky {
+  position: sticky;
+  top: 60px;
 }
 
 .text-xs	{font-size: 0.75rem; line-height: 1rem; }
@@ -76,8 +85,20 @@ export interface RelatedDiscussionsConfig {
   cacheHours: number;
   relatedDiscussionsSourceId: string;
 
+  botUser: string;
   botId: string;
   tagsToSources: {tag: string, sources: string[]}[];
+}
+
+const defaultConfig: RelatedDiscussionsConfig = {
+  maxRelatedDiscussions: 5,
+  cacheHours: 24,
+  doxieApiUrl: "",
+  doxieApiToken: "",
+  relatedDiscussionsSourceId: "",
+  botUser: "",
+  botId: "",
+  tagsToSources: []
 }
 
 @customElement("related-discussions-settings")
@@ -86,18 +107,7 @@ export class RelatedDiscussionsSettings extends LitElement {
   isLoading = true;
 
   @state()
-  saved = false;
-
-  @state()
-  config: RelatedDiscussionsConfig = {
-    maxRelatedDiscussions: 5,
-    cacheHours: 24,
-    doxieApiUrl: "",
-    doxieApiToken: "",
-    relatedDiscussionsSourceId: "",
-    botId: "",
-    tagsToSources: []
-  }
+  config: RelatedDiscussionsConfig = {...defaultConfig};
 
   @state()
   sources: Source[] = [];
@@ -119,6 +129,8 @@ export class RelatedDiscussionsSettings extends LitElement {
   }
 
   async load () {
+    this.isLoading = true;
+    this.requestUpdate();
     try {
       const config = app.data.settings["badlogic-related-discussions.config"];
       console.log(config);
@@ -186,7 +198,7 @@ export class RelatedDiscussionsSettings extends LitElement {
       if ((ev.target as HTMLInputElement).checked) {
         tagToSources.sources.push(source._id!);
       } else {
-        tagToSources.sources = tagToSources.sources.filter((other) => other != tag);
+        tagToSources.sources = tagToSources.sources.filter((other) => other != source._id!);
       }
       this.handleInput();
     }
@@ -213,13 +225,18 @@ export class RelatedDiscussionsSettings extends LitElement {
     }
 
     if (this.isLoading) return html`<div>Loading ...</div>`;
-    return html`<style>${styles}</style><div class="flex flex-col gap-2" class="width: 320px" @change=${() => this.handleInput()} @input=${() => this.handleInput()}>
+    return html`<style>${styles}</style><div class="flex flex-col gap-2" style="position: relative;" @change=${() => this.handleInput()} @input=${() => this.handleInput()}>
       <h2>Doxie Configuration</h2>
       <label class="font-semibold mt-4">Doxie API URL</label>
       <span>E.g. https://doxie.marioslab.io/api</span>
       <input id="doxieApiUrl" class="self-start w-full" value=${this.config.doxieApiUrl}>
       <label class="font-semibold mt-4">Doxie Token</label>
       <input id="doxieApiToken" class="self-start w-full" value=${this.config.doxieApiToken}>
+
+      <div class="flex gap-2 items-center">
+        <button class="self-start" @click=${() => this.reset()}>Reset config</button>
+        <button class="self-start" @click=${() => this.save(this.bots.length == 0 && this.sources.length == 0 )}>Save</button>
+      </div>
 
       ${this.bots.length > 0 && this.sources.length > 0 ? html`
 
@@ -235,6 +252,8 @@ export class RelatedDiscussionsSettings extends LitElement {
       </select>
 
       <h2>Answer bot</h2>
+      <label class="font-semibold">Forum user name of bot</label>
+      <input id="botUser" class="self-start">
       <label class="font-semibold">Bot to use for answering questions</label>
       <div class="flex items-center gap-2">
         <select id="botId" class="self-start" style="padding: 0.25em 0.5em;">
@@ -248,12 +267,36 @@ export class RelatedDiscussionsSettings extends LitElement {
           <span class="font-semibold self-start" style="border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 5px; padding: 0.25em 0.5em;">${tag.name}</span>
           <button @click=${() => openTestTab(this.config.botId, getSourcesForTag(tag.name))}>Test</button>
         </div>
-        <div class="flex gap-4">
+        <div class="flex flex-wrap gap-4">
           ${repeat(this.sources, (source) => html`<label class="flex items-center gap-2"><input type="checkbox" ?checked=${isSourceForTag(tag.name, source)} @change=${(ev: Event) => setSourceForTag(tag.name, source, ev)}>${source.name}</label>`)}
         </div>
       `)}
       `: html`<div></div>`}
     </div>`;
+  }
+
+  async reset() {
+    const key = 'badlogic-related-discussions.config';
+    const value = "";
+
+    try {
+      await app.request({
+        method: 'POST',
+        url: app.forum.attribute('apiUrl') + '/settings',
+        body: { [key]: value },
+        errorHandler: (error: any) => {
+          console.error('Failed to save settings:', error);
+          throw error;
+        },
+      });
+      this.bots = [];
+      this.sources = [];
+      this.config = {...defaultConfig};
+      this.load();
+    } catch (e) {
+      alert("Could not save settings");
+      console.error('Error saving settings:', e);
+    }
   }
 
   handleInput() {
@@ -265,16 +308,16 @@ export class RelatedDiscussionsSettings extends LitElement {
     this.config.doxieApiToken = this.querySelector<HTMLInputElement>("#doxieApiToken")!.value;
 
     if (this.bots.length > 0) {
+      this.config.botUser = this.querySelector<HTMLInputElement>("#botUser")!.value;
       this.config.maxRelatedDiscussions = parseInt(this.querySelector<HTMLInputElement>("#maxRelatedDiscussions")!.value);
       this.config.cacheHours = parseInt(this.querySelector<HTMLInputElement>("#cacheHours")!.value);
       this.config.relatedDiscussionsSourceId = this.querySelector<HTMLSelectElement>("#relatedDiscussionsSourceId")!.value;
 
       this.config.botId = this.querySelector<HTMLSelectElement>("#botId")!.value;
     }
-    this.save();
   }
 
-  async save() {
+  async save(reload=false) {
     const key = 'badlogic-related-discussions.config';
     const value = JSON.stringify(this.config);
 
@@ -290,9 +333,13 @@ export class RelatedDiscussionsSettings extends LitElement {
       });
 
       console.log('Settings saved successfully.');
-      this.saved = true;
-      this.requestUpdate();
-      setTimeout(() => {this.saved = false; this.requestUpdate()}, 3000);
+      if(reload) {
+        this.isLoading = true;
+        this.requestUpdate();
+        this.load();
+      } else {
+        this.requestUpdate();
+      }
     } catch (error) {
       alert("Could not save settings");
       console.error('Error saving settings:', error);

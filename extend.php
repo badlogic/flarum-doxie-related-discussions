@@ -2,12 +2,14 @@
 
 namespace Badlogic\RelatedDiscussions;
 
-use Flarum\Discussion\Filter\DiscussionFilterer;
 use Flarum\Extend;
-use Flarum\Post\Event\Saving;
+use Flarum\Discussion\Filter\DiscussionFilterer;
 use Badlogic\RelatedDiscussions\Discussion\Filter\RelatedDiscussionsFilter;
-use Badlogic\RelatedDiscussions\Listener\SettingsSavingListener;
-use Badlogic\RelatedDiscussions\Listener\Bot;
+use Flarum\Post\Event\Posted;
+use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\Post\CommentPost;
+use Illuminate\Support\Arr;
+use Flarum\User\User;
 
 return [
     (new Extend\Frontend('forum'))
@@ -26,13 +28,66 @@ return [
         ->default("badlogic-related-discussions.config", ""),
 
     (new Extend\Event)
-        ->listen(Saving::class, function (Saving $event) {
-            $post = $event->post; // Original post
-            $content = $post->content; // Content of the original post
-            error_log("New post " . $content);
-        }),
+        ->listen(Posted::class, function (Posted $event) {
+            $post = $event->post;
+            if ($post->number === 1) {
+                try {
+                    $discussion = $post->discussion;
+                    $title = $discussion->title;
+                    $content = $post->content;
+                    $tag = optional($discussion->tags)->pluck('name')->last() ?? '';
 
-    (new Extend\Event)
-        ->listen(\Flarum\Settings\Event\Saving::class, SettingsSavingListener::class),
+                    $settings = resolve(SettingsRepositoryInterface::class);
+                    $configStr = (string) $settings->get('badlogic-related-discussions.config');
+                    if (strlen(trim($configStr)) === 0) {
+                        error_log("Bot: Bot not configured");
+                        return;
+                    }
+
+                    $config = json_decode($configStr);
+                    $botUser = $user = User::where('username', $config->botUser)->first();
+                    if (!$botUser) {
+                        error_log("Bot: Could not find bot user " . $config->botUser);
+                        return;
+                    }
+
+                    $sources = [];
+                    foreach ($config->tagsToSources as $tagSource) {
+                        if ($tagSource->tag === $tag) {
+                            $sources = $tagSource->sources;
+                            break;
+                        }
+                    }
+
+                    $queryUrl = $config->doxieApiUrl . "/answer/";
+                    $client = new \GuzzleHttp\Client();
+
+                    $response = $client->post($queryUrl, [
+                        'json' => ['botId' => $config->botId, 'question' => $title . "\n\n" . $content, "sourceIds" => $sources]
+                    ]);
+
+                    $body = json_decode($response->getBody()->getContents(), true);
+                    if ($body["success"] != true) {
+                        error_log("Bot: Could not get bot answer");
+                        return;
+                    }
+                    if (stristr($body["data"]["answer"], "I can not help with that")) {
+                        error_log("Bot: Bot could not help with answer");
+                        return;
+                    }
+                    $reply = CommentPost::reply(
+                        $discussion->id,
+                        $body["data"]["answer"],
+                        $botUser->id,
+                        Arr::get($post->getAttributes(), 'ip_address', null)
+                    );
+                    $reply->save();
+                    $discussion->refreshCommentCount()->refreshLastPost()->save();
+                } catch (\Exception $e) {
+                    error_log("Bot: Could not create bot answer: " . $e->getMessage());
+                    error_log("Exception trace: " . $e->getTraceAsString());
+                }
+            }
+        }),
 ];
 ?>
