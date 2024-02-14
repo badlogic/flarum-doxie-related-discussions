@@ -131,16 +131,16 @@ export default class RelatedDiscussionList extends Component {
 
   content() {
     if (this.relatedDiscussionState.isLoading()) {
-      return <LoadingIndicator />;
+      return <span>...</span>;
     }
 
     if (!this.relatedDiscussionState.getDiscussions().length) {
       return (
-        <Placeholder
-          text={app.translator.trans(
+        <span class="no-result">
+          {app.translator.trans(
             "badlogic-related-discussions.forum.no_results"
           )}
-        />
+        </span>
       );
     }
 
@@ -159,17 +159,23 @@ export default class RelatedDiscussionList extends Component {
   }
 
   view() {
+    if (!this.relatedDiscussionState.isLoading() && this.relatedDiscussionState.getDiscussions().length == 0) {
+      return <div></div>
+    }
+
     return (
-      <div
-        class={`badlogicRelatedDiscussions`}
-      >
-        <h3>
-          {app.translator.trans(
-            "badlogic-related-discussions.forum.discussion_list_title"
-          )}
-        </h3>
-        <div>
-          {this.content()}
+      <div class={`badlogicRelated`}>
+        <div
+          class={`badlogicRelatedDiscussions`}
+        >
+          <span class="heading">
+            {app.translator.trans(
+              "badlogic-related-discussions.forum.discussion_list_title"
+            )}
+          </span>
+          <div>
+            {this.content()}
+          </div>
         </div>
       </div>
     );

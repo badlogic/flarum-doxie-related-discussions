@@ -24,7 +24,7 @@ export default class RelatedDocsList extends Component {
 
   content() {
     if (this.docsState.isLoading()) {
-      return <LoadingIndicator />;
+      return <span>...</span>;
     }
 
     if (!this.docsState.getDocs().length) {
@@ -47,11 +47,11 @@ export default class RelatedDocsList extends Component {
   view() {
     return (
       <div class={`badlogicRelatedDiscussions`}>
-        <h3>
+        <span>
           {app.translator.trans(
             "badlogic-related-discussions.forum.docs_list_title"
           )}
-        </h3>
+        </span>
         <div>
           {this.content()}
         </div>
