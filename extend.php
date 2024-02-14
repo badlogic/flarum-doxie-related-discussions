@@ -11,6 +11,8 @@ use Flarum\Post\CommentPost;
 use Illuminate\Support\Arr;
 use Flarum\User\User;
 
+$debug = false;
+
 return [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
@@ -40,14 +42,14 @@ return [
                     $settings = resolve(SettingsRepositoryInterface::class);
                     $configStr = (string) $settings->get('badlogic-related-discussions.config');
                     if (strlen(trim($configStr)) === 0) {
-                        error_log("Bot: Bot not configured");
+                        if ($debug) error_log("Bot: Bot not configured");
                         return;
                     }
 
                     $config = json_decode($configStr);
                     $botUser = $user = User::where('username', $config->botUser)->first();
                     if (!$botUser) {
-                        error_log("Bot: Could not find bot user " . $config->botUser);
+                        if ($debug) error_log("Bot: Could not find bot user " . $config->botUser);
                         return;
                     }
 
@@ -68,11 +70,11 @@ return [
 
                     $body = json_decode($response->getBody()->getContents(), true);
                     if ($body["success"] != true) {
-                        error_log("Bot: Could not get bot answer");
+                        if ($debug) error_log("Bot: Could not get bot answer");
                         return;
                     }
                     if (stristr($body["data"]["answer"], "I can not help with that")) {
-                        error_log("Bot: Bot could not help with answer");
+                        if ($debug) error_log("Bot: Bot could not help with answer");
                         return;
                     }
                     $reply = CommentPost::reply(
@@ -84,8 +86,8 @@ return [
                     $reply->save();
                     $discussion->refreshCommentCount()->refreshLastPost()->save();
                 } catch (\Exception $e) {
-                    error_log("Bot: Could not create bot answer: " . $e->getMessage());
-                    error_log("Exception trace: " . $e->getTraceAsString());
+                    if ($debug) error_log("Bot: Could not create bot answer: " . $e->getMessage());
+                    if ($debug) error_log("Exception trace: " . $e->getTraceAsString());
                 }
             }
         }),
