@@ -253,7 +253,7 @@ export class RelatedDiscussionsSettings extends LitElement {
 
       <h2>Answer bot</h2>
       <label class="font-semibold">Forum user name of bot</label>
-      <input id="botUser" class="self-start">
+      <input id="botUser" class="self-start" value=${this.config.botUser ?? ""}>
       <label class="font-semibold">Bot to use for answering questions</label>
       <div class="flex items-center gap-2">
         <select id="botId" class="self-start" style="padding: 0.25em 0.5em;">
