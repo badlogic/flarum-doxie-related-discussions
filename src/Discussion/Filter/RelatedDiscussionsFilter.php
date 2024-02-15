@@ -76,7 +76,7 @@ class RelatedDiscussionsFilter implements FilterInterface
 
         foreach ($posts as $post) {
             $postsText .= "\n" . $post->content . "\n";
-            if (strlen($postsText) > 7000) {
+            if (strlen($postsText) > 3000) {
                 break;
             }
         }
