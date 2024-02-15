@@ -75,10 +75,10 @@ class RelatedDiscussionsFilter implements FilterInterface
         $postsText = $discussion->title . "\n";
 
         foreach ($posts as $post) {
-            $postsText .= "\n" . $post->content . "\n";
-            if (strlen($postsText) > 3000) {
+            if (strlen($postsText) + strlen($post->content)> 3000) {
                 break;
             }
+            $postsText .= "\n" . $post->content . "\n";
         }
         $discussionId = $discussion->id;
 
