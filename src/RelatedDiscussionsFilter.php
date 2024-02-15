@@ -1,6 +1,6 @@
 <?php
 
-namespace Badlogic\RelatedDiscussions\Discussion\Filter;
+namespace Badlogic\RelatedDiscussions;
 
 use Carbon\Carbon;
 use Flarum\Discussion\Discussion;
@@ -75,10 +75,10 @@ class RelatedDiscussionsFilter implements FilterInterface
         $postsText = $discussion->title . "\n";
 
         foreach ($posts as $post) {
-            if (strlen($postsText) + strlen($post->content)> 3000) {
+            $postsText .= "\n" . $post->content . "\n";
+            if (strlen($postsText) > 3000) {
                 break;
             }
-            $postsText .= "\n" . $post->content . "\n";
         }
         $discussionId = $discussion->id;
 

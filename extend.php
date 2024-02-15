@@ -4,7 +4,8 @@ namespace Badlogic\RelatedDiscussions;
 
 use Flarum\Extend;
 use Flarum\Discussion\Filter\DiscussionFilterer;
-use Badlogic\RelatedDiscussions\Discussion\Filter\RelatedDiscussionsFilter;
+use Badlogic\RelatedDiscussions\RelatedDiscussionsFilter;
+use Badlogic\RelatedDiscussions\AddAnswerToDiscussionJob;
 use Flarum\Post\Event\Posted;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\Post\CommentPost;
@@ -47,44 +48,14 @@ return [
                     }
 
                     $config = json_decode($configStr);
-                    $botUser = $user = User::where('username', $config->botUser)->first();
-                    if (!$botUser) {
-                        if ($debug) error_log("Bot: Could not find bot user " . $config->botUser);
-                        return;
-                    }
+                    $discussion = $post->discussion;
+                    $title = $discussion->title;
+                    $content = $post->content;
+                    $tag = optional($discussion->tags)->pluck('name')->last() ?? '';
 
-                    $sources = [];
-                    foreach ($config->tagsToSources as $tagSource) {
-                        if ($tagSource->tag === $tag) {
-                            $sources = $tagSource->sources;
-                            break;
-                        }
-                    }
-
-                    $queryUrl = $config->doxieApiUrl . "/answer/";
-                    $client = new \GuzzleHttp\Client();
-
-                    $response = $client->post($queryUrl, [
-                        'json' => ['botId' => $config->botId, 'question' => $title . "\n\n" . $content, "sourceIds" => $sources]
-                    ]);
-
-                    $body = json_decode($response->getBody()->getContents(), true);
-                    if ($body["success"] != true) {
-                        if ($debug) error_log("Bot: Could not get bot answer");
-                        return;
-                    }
-                    if (stristr($body["data"]["answer"], "I can not help with that")) {
-                        if ($debug) error_log("Bot: Bot could not help with answer");
-                        return;
-                    }
-                    $reply = CommentPost::reply(
-                        $discussion->id,
-                        $body["data"]["answer"],
-                        $botUser->id,
-                        Arr::get($post->getAttributes(), 'ip_address', null)
+                    resolve('flarum.queue.connection')->push(
+                        new AddAnswerToDiscussionJob($discussion->id, $title, $content, $tag, $config, $post->getAttributes())
                     );
-                    $reply->save();
-                    $discussion->refreshCommentCount()->refreshLastPost()->save();
                 } catch (\Exception $e) {
                     if ($debug) error_log("Bot: Could not create bot answer: " . $e->getMessage());
                     if ($debug) error_log("Exception trace: " . $e->getTraceAsString());
