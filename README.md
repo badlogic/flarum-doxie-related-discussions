@@ -2,6 +2,19 @@
 
 This Flarum extension integrates with [doxietwo](https://github.com/badlogic/doxietwo) to provide AI-powered related discussion suggestions and automated bot answers to new forum posts.
 
+## Deployment
+
+To deploy the latest version to the production server:
+
+```bash
+ssh -p 726 mario@jp
+cd /srv/flarum
+sudo su
+./update-related.sh
+cd storage/cache
+rm -rf *
+```
+
 ## Features
 
 - **Related Discussions**: Shows relevant discussions from your forum based on semantic similarity using RAG (Retrieval Augmented Generation)
