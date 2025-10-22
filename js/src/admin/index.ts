@@ -58,23 +58,23 @@ const styles = `
 .font-semibold {font-weight: 600;}
 `
 
+// New doxietwo API types
 export interface Source {
-  _id?: string;
+  id: string;
   name: string;
-  description: string;
+  endpointUrl: string;
+  headers?: Record<string, string>;
+  chunking: any; // ChunkingStrategy
+  documentCount?: number;
 }
 
 export interface Bot {
-  _id?: string;
-  sources: string[];
+  id: string;
   name: string;
-  description: string;
   systemPrompt: string;
-  botName: string;
-  botIcon?: string;
-  botWelcome?: string;
-  botFooter?: string;
-  botCss?: string;
+  sourceIds: string[];
+  model: any; // Model type from pi-ai
+  thinkingLevel?: "minimal" | "low" | "medium" | "high";
 }
 
 export interface RelatedDiscussionsConfig {
@@ -139,29 +139,25 @@ export class RelatedDiscussionsSettings extends LitElement {
       }
 
       if (this.config.doxieApiUrl.length > 0 && this.config.doxieApiToken.length > 0) {
-        let response = await fetch(this.config.doxieApiUrl + "/bots", {headers: {"Authorization": this.config.doxieApiToken}});
+        // Fetch bots using new doxietwo API
+        let response = await fetch(this.config.doxieApiUrl + "/bots", {
+          headers: {"Authorization": "Bearer " + this.config.doxieApiToken}
+        });
         if (!response.ok) {
-          alert("Could not fetch bots. Check Doxie API URL and token");
+          alert("Could not fetch bots. Check Doxie API URL and token. Status: " + response.status);
           return;
         }
-        const bots = await response.json();
-        if (!bots.success) {
-          alert("Could not fetch bots. Check Doxie API URL and token");
-          return;
-        }
-        this.bots = bots.data;
+        this.bots = await response.json();
 
-        response = await fetch(this.config.doxieApiUrl + "/sources", {headers: {"Authorization": this.config.doxieApiToken}});
+        // Fetch sources using new doxietwo API
+        response = await fetch(this.config.doxieApiUrl + "/sources", {
+          headers: {"Authorization": "Bearer " + this.config.doxieApiToken}
+        });
         if (!response.ok) {
-          alert("Could not fetch sources. Check Doxie API URL and token");
+          alert("Could not fetch sources. Check Doxie API URL and token. Status: " + response.status);
           return;
         }
-        const sources = await response.json();
-        if (!sources.success) {
-          alert("Could not fetch sources. Check Doxie API URL and token");
-          return;
-        }
-        this.sources = sources.data;
+        this.sources = await response.json();
 
         const tagsResponse = await app.request({
           method: 'GET',
@@ -183,7 +179,7 @@ export class RelatedDiscussionsSettings extends LitElement {
 
   render() {
     const isSourceForTag = (tag: string, source: Source) => {
-      return this.config.tagsToSources.some((tagToSources) => tagToSources.tag.toLowerCase() == tag.toLowerCase() && tagToSources.sources.some((other) => other == source._id));
+      return this.config.tagsToSources.some((tagToSources) => tagToSources.tag.toLowerCase() == tag.toLowerCase() && tagToSources.sources.some((other) => other == source.id));
     }
 
     const setSourceForTag = (tag: string, source: Source, ev: Event) => {
@@ -196,9 +192,9 @@ export class RelatedDiscussionsSettings extends LitElement {
         this.config.tagsToSources.push(tagToSources);
       }
       if ((ev.target as HTMLInputElement).checked) {
-        tagToSources.sources.push(source._id!);
+        tagToSources.sources.push(source.id);
       } else {
-        tagToSources.sources = tagToSources.sources.filter((other) => other != source._id!);
+        tagToSources.sources = tagToSources.sources.filter((other) => other != source.id);
       }
       this.handleInput();
     }
@@ -213,14 +209,22 @@ export class RelatedDiscussionsSettings extends LitElement {
 
     const openTestTab = (botId: string, sources: string[]) => {
       const apiUrl = new URL(this.config.doxieApiUrl);
-      const sourcesParam = encodeURIComponent(sources.join("|"));
-      let url: string = "";
+      let baseUrl: string = "";
+
+      // Construct base URL (remove /api suffix)
       if (apiUrl.hostname.includes("localhost") || apiUrl.host.includes("192.168.")) {
-        url = "http://localhost:8080/answer/";
+        baseUrl = "http://localhost:8080";
       } else {
-        url = this.config.doxieApiUrl.replace("/api", "/answer/");
+        baseUrl = this.config.doxieApiUrl.replace("/api", "");
       }
-      url +=  botId + (sources.length > 0 ? "?sources=" + sourcesParam : "");
+
+      // Construct URL with /bot/:id format and multiple sourceId query params
+      let url = `${baseUrl}/bot/${botId}`;
+      if (sources.length > 0) {
+        const sourceParams = sources.map(id => `sourceId=${encodeURIComponent(id)}`).join("&");
+        url += `?${sourceParams}`;
+      }
+
       window.open(url, "_blank");
     }
 
@@ -228,7 +232,7 @@ export class RelatedDiscussionsSettings extends LitElement {
     return html`<style>${styles}</style><div class="flex flex-col gap-2" style="position: relative;" @change=${() => this.handleInput()} @input=${() => this.handleInput()}>
       <h2>Doxie Configuration</h2>
       <label class="font-semibold mt-4">Doxie API URL</label>
-      <span>E.g. https://doxie.marioslab.io/api</span>
+      <span>E.g. https://doxietwo.mariozechner.at/api</span>
       <input id="doxieApiUrl" class="self-start w-full" value=${this.config.doxieApiUrl}>
       <label class="font-semibold mt-4">Doxie Token</label>
       <input id="doxieApiToken" class="self-start w-full" value=${this.config.doxieApiToken}>
@@ -248,7 +252,7 @@ export class RelatedDiscussionsSettings extends LitElement {
       <label class="font-semibold mt-4">Related discussions Doxie source</label>
       <span class="text-xs">Doxie source to fetch related discussions from</span>
       <select id="relatedDiscussionsSourceId" class="self-start">
-        ${repeat(this.sources, (source) => html`<option value=${source._id!} ?selected=${this.config.relatedDiscussionsSourceId == source._id}>${source.name}</option>`)}
+        ${repeat(this.sources, (source) => html`<option value=${source.id} ?selected=${this.config.relatedDiscussionsSourceId == source.id}>${source.name}</option>`)}
       </select>
 
       <h2>Answer bot</h2>
@@ -257,7 +261,7 @@ export class RelatedDiscussionsSettings extends LitElement {
       <label class="font-semibold">Bot to use for answering questions</label>
       <div class="flex items-center gap-2">
         <select id="botId" class="self-start" style="padding: 0.25em 0.5em;">
-          ${repeat(this.bots, (bot) => html`<option value=${bot._id!} ?selected=${this.config.botId == bot._id}>${bot.name}</option>`)}
+          ${repeat(this.bots, (bot) => html`<option value=${bot.id} ?selected=${this.config.botId == bot.id}>${bot.name}</option>`)}
         </select>
         <button @click=${() => openTestTab(this.config.botId, [])}>Test</button>
       </div>
@@ -333,6 +337,19 @@ export class RelatedDiscussionsSettings extends LitElement {
       });
 
       console.log('Settings saved successfully.');
+
+      // Clear cache to invalidate old related discussions results
+      try {
+        await app.request({
+          method: 'DELETE',
+          url: app.forum.attribute('apiUrl') + '/cache',
+        });
+        console.log('Cache cleared successfully');
+      } catch (cacheError) {
+        console.warn('Could not clear cache:', cacheError);
+        // Don't fail the save if cache clear fails
+      }
+
       if(reload) {
         this.isLoading = true;
         this.requestUpdate();
