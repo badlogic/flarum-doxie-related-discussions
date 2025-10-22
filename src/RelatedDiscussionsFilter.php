@@ -89,7 +89,7 @@ class RelatedDiscussionsFilter implements FilterInterface
             $queryUrl = $config->doxieApiUrl . "/api/search";
             $response = $client->post($queryUrl, [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $config->adminKey,
+                    'Authorization' => 'Bearer ' . $config->doxieApiToken,
                 ],
                 'json' => [
                     'sourceId' => $config->relatedDiscussionsSourceId,

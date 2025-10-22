@@ -56,7 +56,7 @@ class AddAnswerToDiscussionJob implements ShouldQueue
 
         $response = $client->post($queryUrl, [
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->config->adminKey,
+                'Authorization' => 'Bearer ' . $this->config->doxieApiToken,
             ],
             'json' => [
                 'botId' => $this->config->botId,
