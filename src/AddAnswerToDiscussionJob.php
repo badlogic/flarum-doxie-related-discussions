@@ -37,15 +37,10 @@ class AddAnswerToDiscussionJob implements ShouldQueue
 
     public function handle()
     {
-        error_log("[BotAnswer] Processing discussion {$this->discussionId}, tag: {$this->tag}");
-
         $botUser = User::where('username', $this->config->botUser)->first();
         if (!$botUser) {
-            error_log("[BotAnswer] ERROR: Could not find bot user {$this->config->botUser}");
             return;
         }
-
-        error_log("[BotAnswer] Found bot user: {$botUser->username} (ID: {$botUser->id})");
 
         $sources = [];
         foreach ($this->config->tagsToSources as $tagSource) {
@@ -55,15 +50,10 @@ class AddAnswerToDiscussionJob implements ShouldQueue
             }
         }
 
-        error_log("[BotAnswer] Sources for tag '{$this->tag}': " . json_encode($sources));
-
         $queryUrl = $this->config->doxieApiUrl . "/query";
         $client = new \GuzzleHttp\Client();
 
         $question = $this->title . "\n\n" . $this->content;
-        error_log("[BotAnswer] Calling API: {$queryUrl}");
-        error_log("[BotAnswer] Bot ID: {$this->config->botId}");
-        error_log("[BotAnswer] Question length: " . strlen($question));
 
         try {
             $response = $client->post($queryUrl, [
@@ -78,17 +68,12 @@ class AddAnswerToDiscussionJob implements ShouldQueue
             ]);
 
             $body = json_decode($response->getBody()->getContents(), true);
-            error_log("[BotAnswer] API response keys: " . json_encode(array_keys($body ?? [])));
 
             if (!isset($body["answer"])) {
-                error_log("[BotAnswer] ERROR: No answer in response: " . json_encode($body));
                 return;
             }
 
-            error_log("[BotAnswer] Got answer, length: " . strlen($body["answer"]));
-
             if (stristr($body["answer"], "I can not help with that")) {
-                error_log("[BotAnswer] Bot declined to answer");
                 return;
             }
 
@@ -99,12 +84,10 @@ class AddAnswerToDiscussionJob implements ShouldQueue
                 Arr::get($this->attributes, 'ip_address', null)
             );
             $reply->save();
-            error_log("[BotAnswer] Reply posted successfully (post ID: {$reply->id})");
 
             $discussion = Discussion::find($this->discussionId);
             if ($discussion) {
                 $discussion->refreshCommentCount()->refreshLastPost()->save();
-                error_log("[BotAnswer] Discussion metadata refreshed");
             }
         } catch (\Exception $e) {
             error_log("[BotAnswer] ERROR: " . $e->getMessage());
