@@ -38,12 +38,10 @@ class AddAnswerToDiscussionJob implements ShouldQueue
     public function handle()
     {
         error_log("[BotAnswer] Processing discussion {$this->discussionId}, tag: {$this->tag}");
-        Log::error("Bot: Starting to add answer to discussion " . $this->discussionId);
 
         $botUser = User::where('username', $this->config->botUser)->first();
         if (!$botUser) {
             error_log("[BotAnswer] ERROR: Could not find bot user {$this->config->botUser}");
-            Log::error("Bot: Could not find bot user " . $this->config->botUser);
             return;
         }
 
@@ -84,7 +82,6 @@ class AddAnswerToDiscussionJob implements ShouldQueue
 
             if (!isset($body["answer"])) {
                 error_log("[BotAnswer] ERROR: No answer in response: " . json_encode($body));
-                Log::error("Bot: Could not get bot answer");
                 return;
             }
 
@@ -92,7 +89,6 @@ class AddAnswerToDiscussionJob implements ShouldQueue
 
             if (stristr($body["answer"], "I can not help with that")) {
                 error_log("[BotAnswer] Bot declined to answer");
-                Log::error("Bot: Bot could not help with answer");
                 return;
             }
 
@@ -113,7 +109,6 @@ class AddAnswerToDiscussionJob implements ShouldQueue
         } catch (\Exception $e) {
             error_log("[BotAnswer] ERROR: " . $e->getMessage());
             error_log("[BotAnswer] Stack trace: " . $e->getTraceAsString());
-            Log::error("Bot: Exception: " . $e->getMessage());
             throw $e;
         }
     }
