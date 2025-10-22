@@ -86,14 +86,21 @@ class RelatedDiscussionsFilter implements FilterInterface
 
         try {
             $config = json_decode((string) $this->settings->get('badlogic-related-discussions.config'));
-            $queryUrl = $config->doxieApiUrl . "/documents/" . $config->relatedDiscussionsSourceId . "/query";
+            $queryUrl = $config->doxieApiUrl . "/api/search";
             $response = $client->post($queryUrl, [
-                'json' => ['k' => 50, 'query' => $postsText]
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $config->adminKey,
+                ],
+                'json' => [
+                    'sourceId' => $config->relatedDiscussionsSourceId,
+                    'query' => $postsText,
+                    'limit' => 50
+                ]
             ]);
 
             $body = json_decode($response->getBody()->getContents(), true);
 
-            $docUris = collect($body['data'] ?? [])
+            $docUris = collect($body['results'] ?? [])
                         ->pluck('docUri')
                         ->unique()
                         ->map(function ($uri) use ($discussionId) {

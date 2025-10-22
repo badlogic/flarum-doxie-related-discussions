@@ -51,25 +51,32 @@ class AddAnswerToDiscussionJob implements ShouldQueue
             }
         }
 
-        $queryUrl = $this->config->doxieApiUrl . "/answer/";
+        $queryUrl = $this->config->doxieApiUrl . "/api/query";
         $client = new \GuzzleHttp\Client();
 
         $response = $client->post($queryUrl, [
-            'json' => ['botId' => $this->config->botId, 'question' => $this->title . "\n\n" . $this->content, "sourceIds" => $sources]
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->config->adminKey,
+            ],
+            'json' => [
+                'botId' => $this->config->botId,
+                'question' => $this->title . "\n\n" . $this->content,
+                'sourceIds' => $sources
+            ]
         ]);
 
         $body = json_decode($response->getBody()->getContents(), true);
-        if ($body["success"] != true) {
+        if (!isset($body["answer"])) {
             Log::error("Bot: Could not get bot answer");
             return;
         }
-        if (stristr($body["data"]["answer"], "I can not help with that")) {
+        if (stristr($body["answer"], "I can not help with that")) {
             Log::error("Bot: Bot could not help with answer");
             return;
         }
         $reply = CommentPost::reply(
             $this->discussionId,
-            $body["data"]["answer"],
+            $body["answer"],
             $botUser->id,
             Arr::get($this->attributes, 'ip_address', null)
         );
