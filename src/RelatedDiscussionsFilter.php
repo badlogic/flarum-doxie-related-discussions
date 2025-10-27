@@ -119,8 +119,8 @@ class RelatedDiscussionsFilter implements FilterInterface
                         ->values();
 
         } catch (\Exception $e) {
-            error_log("[RelatedDiscussions] ERROR: " . $e->getMessage());
-            error_log("[RelatedDiscussions] Stack trace: " . $e->getTraceAsString());
+            // error_log("[RelatedDiscussions] ERROR: " . $e->getMessage());
+            // error_log("[RelatedDiscussions] Stack trace: " . $e->getTraceAsString());
             $docUris = collect([]);
         }
 
